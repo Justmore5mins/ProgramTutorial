@@ -6,31 +6,32 @@ from urllib.parse import urlparse
 class WebsiteNode(nodes.General, nodes.Element):
     pass
 
-def visit_website_html(self, node):
-    self.body.append(self.starttag(node, 'div', CLASS='website-card'))
-
-def depart_website_html(self, node):
-    self.body.append('</div>')
-
 class WebsiteDirective(SphinxDirective):
-    required_arguments = 1
+    required_arguments = 1      # URL
+    option_spec = {
+        'title': lambda x: x,   # custom title
+    }
 
     def run(self):
         url = self.arguments[0]
-        title = url
-        favicon = ''
 
-        # Try fetching page title
-        try:
-            r = requests.get(url, timeout=3)
-            if "<title>" in r.text.lower():
-                start = r.text.lower().find("<title>") + 7
-                end = r.text.lower().find("</title>")
-                title = r.text[start:end].strip()
-        except Exception:
-            pass
+        # If user gives :title:, use it
+        if 'title' in self.options:
+            title = self.options['title']
+        else:
+            title = url
+            # Auto-fetch page title
+            try:
+                r = requests.get(url, timeout=3)
+                html_lower = r.text.lower()
+                if "<title>" in html_lower:
+                    start = html_lower.find("<title>") + 7
+                    end = html_lower.find("</title>")
+                    title = r.text[start:end].strip()
+            except Exception:
+                pass
 
-        # Favicon (fallback: domain/favicon.ico)
+        # Favicon
         domain = f"{urlparse(url).scheme}://{urlparse(url).netloc}"
         favicon = f"{domain}/favicon.ico"
 
@@ -38,7 +39,6 @@ class WebsiteDirective(SphinxDirective):
         node['url'] = url
         node['title'] = title
         node['favicon'] = favicon
-
         return [node]
 
 
@@ -57,10 +57,8 @@ def html_visit(self, node):
 </div>
     """)
 
-
 def html_depart(self, node):
     pass
-
 
 def setup(app):
     app.add_node(
@@ -68,7 +66,6 @@ def setup(app):
         html=(html_visit, html_depart),
     )
     app.add_directive("website", WebsiteDirective)
-
     app.add_css_file("website.css")
 
     return {

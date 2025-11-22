@@ -5,7 +5,7 @@ KOP底盤程式
 ------------
     1. 馬達x2 / 4
     2. 馬達控制器 x2 / 4
-    3. 配好電的底盤(建議有 `陀螺儀 <https://docs.wpilib.org/en/2027/docs/hardware/sensors/gyros-hardware.html>`_ )
+    3. 配好電的底盤(建議有 `陀螺儀 <../LinkedDocuments/gyroscope.html>`_ )
    
 大概講解
 -----------

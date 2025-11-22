@@ -6,7 +6,7 @@ FRC程式資料庫
 
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :caption: 這是目錄
 
    Prefixes/index
