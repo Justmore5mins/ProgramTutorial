@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-accent-color="violet" data-content_root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>FRC的程式架構 - FRC程式資料庫 說明文件</title><link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜尋" href="../search.html" /><link rel="next" title="基礎專案" href="../NotComplexProjects/index.html" /><link rel="prev" title="馬達與控制器簡介" href="MotorIntro.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=dcd234e3" />
+    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../_static/website.css?v=c3fe7fb9" />
+    <link media="print" rel="stylesheet" type="text/css" href="../_static/print.css?v=20ff2c19" />
+    <link rel="stylesheet" type="text/css" href="../_static/website.css?v=c3fe7fb9" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="FRC的程式架構"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../index.html">
+      
+      
+      <strong>FRC程式資料庫</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../search.html" method="get">
+  <input type="text" name="q" placeholder="搜尋" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials"></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="切換到亮色模式"
+data-aria-light="切換到暗黑模式"
+data-aria-dark="切換到自動模式">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">這是目錄</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">先備知識</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="JavaLanguage.html">要裝的東西跟Java的語法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MotorIntro.html">馬達與控制器簡介</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">FRC的程式架構</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../NotComplexProjects/index.html">基礎專案</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../NotComplexProjects/DIfferentialDrive.html">KOP底盤程式</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">FRC程式資料庫</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="index.html"><span itemprop="name">先備知識</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">FRC的程式架構</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="frc">
+<h1>FRC的程式架構<a class="headerlink" href="#frc" title="連結到這個標頭">¶</a></h1>
+<p>FRC的程式架構主要分兩種: <code class="docutils literal notranslate"><span class="pre">Timed</span> <span class="pre">Based</span></code> 與 <code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">Based</span></code> 這兩個主要差在Timed based雖然方便開發，但是到比較複雜的專案(例如比賽的時候整台機器的程式)就會很難維護跟debug，反觀Command Based，他雖然架構很明確，而且非常容易維護，不過壞處就是會寫很多原本Timed Based不用寫的程式碼。</p>
+<p>使用情境：</p>
+<dl class="simple">
+<dt>Timed Based:</dt><dd><ul class="simple">
+<li><p>剛拿到新東西要試API的時候</p></li>
+<li><p>一個東西不確定有沒有壞掉跑跑看程式的時候</p></li>
+<li><p>短時間/簡單的測試</p></li>
+</ul>
+</dd>
+<dt>Command based:</dt><dd><ul class="simple">
+<li><p>完整的機器的專案</p></li>
+<li><p>需要多人共編的環境</p></li>
+<li><p>長時間/複雜的專案</p></li>
+</ul>
+</dd>
+</dl>
+<p>Timed Based：</p>
+<p>最小執行單位是一行程式碼，就含其他程式的專案一樣，就是由上往下一條條執行。</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">TimedBased.java</span><a class="headerlink" href="#id1" title="連結到這個程式碼">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">//Libraries url</span>
+</span><span data-line="2"><span class="c1">//https://software-metadata.revrobotics.com/REVLib-2023.json</span>
+</span><span data-line="3"><span class="c1">//https://maven.ctr-electronics.com/release/com/ctre/phoenix/Phoenix5-frc2023-latest.json</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="kn">package</span><span class="w"> </span><span class="nn">frc.robot</span><span class="p">;</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Robot</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">TimedRobot</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="8"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">CANSparkMax</span><span class="w"> </span><span class="n">motor0</span><span class="p">;</span><span class="w"> </span><span class="c1">// intake馬達</span>
+</span><span data-line="9"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">CANSparkMax</span><span class="w"> </span><span class="n">motor1</span><span class="p">;</span><span class="w"> </span><span class="c1">// 底盤馬達</span>
+</span><span data-line="10"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">CANSparkMax</span><span class="w"> </span><span class="n">motor2</span><span class="p">;</span><span class="w"> </span><span class="c1">// 底盤馬達</span>
+</span><span data-line="11"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">CANSparkMax</span><span class="w"> </span><span class="n">motor3</span><span class="p">;</span><span class="w"> </span><span class="c1">// 底盤馬達</span>
+</span><span data-line="12"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">CANSparkMax</span><span class="w"> </span><span class="n">motor4</span><span class="p">;</span><span class="w"> </span><span class="c1">// 底盤馬達</span>
+</span><span data-line="13"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">CANSparkMax</span><span class="w"> </span><span class="n">motor5</span><span class="p">;</span><span class="w"> </span><span class="c1">// 升降機構</span>
+</span><span data-line="14"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">CANSparkMax</span><span class="w"> </span><span class="n">motor6</span><span class="p">;</span><span class="w"> </span><span class="c1">// 升降機構</span>
+</span><span data-line="15"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">CANSparkMax</span><span class="w"> </span><span class="n">motor7</span><span class="p">;</span><span class="w"> </span><span class="c1">// Shooter馬達</span>
+</span><span data-line="16"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">CANSparkMax</span><span class="w"> </span><span class="n">motor8</span><span class="p">;</span><span class="w"> </span><span class="c1">// Shooter馬達</span>
+</span><span data-line="17"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">RelativeEncoder</span><span class="w"> </span><span class="n">encoder5</span><span class="p">;</span><span class="w"> </span><span class="c1">// 軸編碼器</span>
+</span><span data-line="18"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">RelativeEncoder</span><span class="w"> </span><span class="n">encoder6</span><span class="p">;</span><span class="w"> </span><span class="c1">// 軸編碼器</span>
+</span><span data-line="19"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">MotorControllerGroup</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
+</span><span data-line="20"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">MotorControllerGroup</span><span class="w"> </span><span class="n">left</span><span class="p">;</span>
+</span><span data-line="21"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">DifferentialDrive</span><span class="w"> </span><span class="n">drive</span><span class="p">;</span>
+</span><span data-line="22"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Joystick</span><span class="w"> </span><span class="n">joystick</span><span class="p">;</span>
+</span><span data-line="23"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">startTime</span><span class="p">;</span>
+</span><span data-line="24">
+</span><span data-line="25"><span class="w">    </span><span class="nd">@Override</span>
+</span><span data-line="26"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">robotInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="27"><span class="w">        </span><span class="n">motor0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CANSparkMax</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="n">MotorType</span><span class="p">.</span><span class="na">kBrushless</span><span class="p">);</span>
+</span><span data-line="28"><span class="w">        </span><span class="n">motor1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CANSparkMax</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">MotorType</span><span class="p">.</span><span class="na">kBrushless</span><span class="p">);</span>
+</span><span data-line="29"><span class="w">        </span><span class="n">motor2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CANSparkMax</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">MotorType</span><span class="p">.</span><span class="na">kBrushless</span><span class="p">);</span>
+</span><span data-line="30"><span class="w">        </span><span class="n">motor3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CANSparkMax</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">MotorType</span><span class="p">.</span><span class="na">kBrushless</span><span class="p">);</span>
+</span><span data-line="31"><span class="w">        </span><span class="n">motor4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CANSparkMax</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">MotorType</span><span class="p">.</span><span class="na">kBrushless</span><span class="p">);</span>
+</span><span data-line="32"><span class="w">        </span><span class="n">motor5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CANSparkMax</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">MotorType</span><span class="p">.</span><span class="na">kBrushless</span><span class="p">);</span>
+</span><span data-line="33"><span class="w">        </span><span class="n">motor6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CANSparkMax</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="n">MotorType</span><span class="p">.</span><span class="na">kBrushless</span><span class="p">);</span>
+</span><span data-line="34"><span class="w">        </span><span class="n">motor7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CANSparkMax</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="n">MotorType</span><span class="p">.</span><span class="na">kBrushless</span><span class="p">);</span>
+</span><span data-line="35"><span class="w">        </span><span class="n">motor8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CANSparkMax</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="n">MotorType</span><span class="p">.</span><span class="na">kBrushless</span><span class="p">);</span>
+</span><span data-line="36">
+</span><span data-line="37"><span class="w">        </span><span class="n">encoder5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">motor5</span><span class="p">.</span><span class="na">getEncoder</span><span class="p">();</span>
+</span><span data-line="38"><span class="w">        </span><span class="n">encoder6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">motor6</span><span class="p">.</span><span class="na">getEncoder</span><span class="p">();</span>
+</span><span data-line="39">
+</span><span data-line="40"><span class="w">        </span><span class="n">motor5</span><span class="p">.</span><span class="na">restoreFactoryDefaults</span><span class="p">();</span>
+</span><span data-line="41"><span class="w">        </span><span class="n">motor6</span><span class="p">.</span><span class="na">restoreFactoryDefaults</span><span class="p">();</span>
+</span><span data-line="42">
+</span><span data-line="43"><span class="w">        </span><span class="n">encoder5</span><span class="p">.</span><span class="na">setPosition</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="44"><span class="w">        </span><span class="n">encoder6</span><span class="p">.</span><span class="na">setPosition</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="45">
+</span><span data-line="46"><span class="w">        </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MotorControllerGroup</span><span class="p">(</span><span class="n">motor1</span><span class="p">,</span><span class="w"> </span><span class="n">motor2</span><span class="p">);</span>
+</span><span data-line="47"><span class="w">        </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MotorControllerGroup</span><span class="p">(</span><span class="n">motor3</span><span class="p">,</span><span class="w"> </span><span class="n">motor4</span><span class="p">);</span>
+</span><span data-line="48">
+</span><span data-line="49"><span class="w">        </span><span class="n">drive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDrive</span><span class="p">(</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="p">);</span>
+</span><span data-line="50"><span class="w">        </span><span class="n">joystick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Joystick</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="51"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="52">
+</span><span data-line="53"><span class="w">    </span><span class="nd">@Override</span>
+</span><span data-line="54"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">teleopPeriodic</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="55"><span class="w">        </span><span class="c1">// 底盤變數</span>
+</span><span data-line="56"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">turnSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">joystick</span><span class="p">.</span><span class="na">getRawAxis</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="57"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">driveSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.6</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">joystick</span><span class="p">.</span><span class="na">getRawAxis</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</span><span data-line="58"><span class="w">        </span><span class="c1">// 編碼器變數 (Pos是位置、Spd是速度)</span>
+</span><span data-line="59"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">motorPos5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">encoder5</span><span class="p">.</span><span class="na">getPosition</span><span class="p">();</span>
+</span><span data-line="60"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">motorSpd5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">encoder5</span><span class="p">.</span><span class="na">getVelocity</span><span class="p">();</span>
+</span><span data-line="61"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">motorPos6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">encoder6</span><span class="p">.</span><span class="na">getPosition</span><span class="p">();</span>
+</span><span data-line="62"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">motorSpd6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">encoder6</span><span class="p">.</span><span class="na">getVelocity</span><span class="p">();</span>
+</span><span data-line="63">
+</span><span data-line="64"><span class="w">        </span><span class="c1">// intke運作</span>
+</span><span data-line="65"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="na">getRawButton</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="66"><span class="w">        </span><span class="n">motor0</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mf">0.8</span><span class="p">);</span>
+</span><span data-line="67"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="na">getRawButton</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="68"><span class="w">        </span><span class="n">motor0</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">);</span>
+</span><span data-line="69"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="70"><span class="w">        </span><span class="n">motor0</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="71"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="72">
+</span><span data-line="73"><span class="w">        </span><span class="c1">// 升降機構運作</span>
+</span><span data-line="74"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="na">getRawButton</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="75"><span class="w">        </span><span class="n">motor5</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mf">0.3</span><span class="p">);</span>
+</span><span data-line="76"><span class="w">        </span><span class="n">motor6</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="o">-</span><span class="mf">0.3</span><span class="p">);</span>
+</span><span data-line="77"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="na">getRawButton</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="78"><span class="w">        </span><span class="n">motor5</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="o">-</span><span class="mf">0.3</span><span class="p">);</span>
+</span><span data-line="79"><span class="w">        </span><span class="n">motor6</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mf">0.3</span><span class="p">);</span>
+</span><span data-line="80"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="81"><span class="w">        </span><span class="n">motor5</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="82"><span class="w">        </span><span class="n">motor6</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="83"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="84">
+</span><span data-line="85"><span class="w">        </span><span class="c1">// shooter運作</span>
+</span><span data-line="86"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="na">getRawButton</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="87"><span class="w">        </span><span class="n">motor7</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mf">0.8</span><span class="p">);</span>
+</span><span data-line="88"><span class="w">        </span><span class="n">motor8</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mf">0.8</span><span class="p">);</span>
+</span><span data-line="89"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="na">getRawButton</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="90"><span class="w">        </span><span class="n">motor7</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">);</span>
+</span><span data-line="91"><span class="w">        </span><span class="n">motor8</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="o">-</span><span class="mf">0.8</span><span class="p">);</span>
+</span><span data-line="92"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="93"><span class="w">        </span><span class="n">motor7</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="94"><span class="w">        </span><span class="n">motor8</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="95"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="96">
+</span><span data-line="97"><span class="w">        </span><span class="c1">// 底盤運作</span>
+</span><span data-line="98"><span class="w">        </span><span class="n">drive</span><span class="p">.</span><span class="na">arcadeDrive</span><span class="p">(</span><span class="n">turnSpeed</span><span class="p">,</span><span class="w"> </span><span class="n">driveSpeed</span><span class="p">);</span>
+</span><span data-line="99">
+</span><span data-line="100"><span class="w">        </span><span class="c1">// 數值監控</span>
+</span><span data-line="101"><span class="w">        </span><span class="n">SmartDashboard</span><span class="p">.</span><span class="na">putNumber</span><span class="p">(</span><span class="s">&quot;turnSpeed&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">turnSpeed</span><span class="p">);</span>
+</span><span data-line="102"><span class="w">        </span><span class="n">SmartDashboard</span><span class="p">.</span><span class="na">putNumber</span><span class="p">(</span><span class="s">&quot;driveSpeed&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">driveSpeed</span><span class="p">);</span>
+</span><span data-line="103"><span class="w">        </span><span class="n">SmartDashboard</span><span class="p">.</span><span class="na">putNumber</span><span class="p">(</span><span class="s">&quot;motor5Pos&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">motorPos5</span><span class="p">);</span>
+</span><span data-line="104"><span class="w">        </span><span class="n">SmartDashboard</span><span class="p">.</span><span class="na">putNumber</span><span class="p">(</span><span class="s">&quot;motor5Spd&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">motorSpd5</span><span class="p">);</span>
+</span><span data-line="105"><span class="w">        </span><span class="n">SmartDashboard</span><span class="p">.</span><span class="na">putNumber</span><span class="p">(</span><span class="s">&quot;motor6Pos&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">motorPos6</span><span class="p">);</span>
+</span><span data-line="106"><span class="w">        </span><span class="n">SmartDashboard</span><span class="p">.</span><span class="na">putNumber</span><span class="p">(</span><span class="s">&quot;motor6Spd&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">motorSpd6</span><span class="p">);</span>
+</span><span data-line="107"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="108">
+</span><span data-line="109"><span class="w">    </span><span class="nd">@Override</span>
+</span><span data-line="110"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">autonomousInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="111"><span class="w">        </span><span class="n">startTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Timer</span><span class="p">.</span><span class="na">getFPGATimestamp</span><span class="p">();</span>
+</span><span data-line="112"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="113">
+</span><span data-line="114"><span class="w">    </span><span class="nd">@Override</span>
+</span><span data-line="115"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">autonomousPeriodic</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="116"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Timer</span><span class="p">.</span><span class="na">getFPGATimestamp</span><span class="p">();</span>
+</span><span data-line="117">
+</span><span data-line="118"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="119"><span class="p">}</span>
+</span></pre></div>
+</div>
+</div>
+<p>Command Based:</p>
+<p>最小單位是指令(command)，最小的執行單位是子系統(subsystem)，通常一個子系統一次只能執行一個指令。要執行指令可以透過排程(schedule)的方式去跑，當然也可以發展出相對複雜的關係(之後會出現)。</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Drivetrain.java</span><a class="headerlink" href="#id2" title="連結到這個程式碼">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">package</span><span class="w"> </span><span class="nn">frc.robot.Drivetrain</span><span class="p">;</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Drivetrain</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SwerveDrivetrain</span><span class="o">&lt;</span><span class="n">TalonFX</span><span class="p">,</span><span class="w"> </span><span class="n">TalonFX</span><span class="p">,</span><span class="w"> </span><span class="n">CANcoder</span><span class="o">&gt;</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Subsystem</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Time</span><span class="w"> </span><span class="n">SimLoop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Milliseconds</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</span><span data-line="5"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Notifier</span><span class="w"> </span><span class="n">SimNotifer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Vision</span><span class="w"> </span><span class="n">vision</span><span class="p">;</span>
+</span><span data-line="7"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">SimDrive</span><span class="w"> </span><span class="n">simDrive</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">OperatorPerspectiveApplied</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+</span><span data-line="9">
+</span><span data-line="10"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">SwerveRequest</span><span class="p">.</span><span class="na">ApplyRobotSpeeds</span><span class="w"> </span><span class="n">AutoDrive</span><span class="p">;</span>
+</span><span data-line="11"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">DoublePublisher</span><span class="o">[]</span><span class="w"> </span><span class="n">CANCoderPositions</span><span class="p">;</span>
+</span><span data-line="12"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">DoublePublisher</span><span class="w"> </span><span class="n">MotorTorque</span><span class="p">;</span>
+</span><span data-line="13">
+</span><span data-line="14"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Drivetrain</span><span class="p">(</span><span class="n">SwerveDrivetrainConstants</span><span class="w"> </span><span class="n">DrivetrainConstants</span><span class="p">,</span><span class="w"> </span><span class="n">SwerveModuleConstants</span><span class="o">&lt;?</span><span class="p">,</span><span class="w"> </span><span class="o">?</span><span class="p">,</span><span class="w"> </span><span class="o">?&gt;</span><span class="p">...</span><span class="w"> </span><span class="n">modules</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="15"><span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">TalonFX</span><span class="p">::</span><span class="k">new</span><span class="p">,</span><span class="w"> </span><span class="n">TalonFX</span><span class="p">::</span><span class="k">new</span><span class="p">,</span><span class="w"> </span><span class="n">CANcoder</span><span class="p">::</span><span class="k">new</span><span class="p">,</span><span class="w"> </span><span class="n">DrivetrainConstants</span><span class="p">,</span>
+</span><span data-line="16"><span class="w">                </span><span class="n">Utils</span><span class="p">.</span><span class="na">isSimulation</span><span class="p">()</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">SimDrive</span><span class="p">.</span><span class="na">regulateModuleConstantsForSimulation</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">modules</span><span class="p">);</span>
+</span><span data-line="17">
+</span><span data-line="18"><span class="w">        </span><span class="n">CANCoderPositions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DoublePublisher</span><span class="o">[]</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="19"><span class="w">                </span><span class="n">NetworkTableInstance</span><span class="p">.</span><span class="na">getDefault</span><span class="p">().</span><span class="na">getDoubleTopic</span><span class="p">(</span><span class="s">&quot;Drivetrain/debug/FLPosition&quot;</span><span class="p">).</span><span class="na">publish</span><span class="p">(),</span>
+</span><span data-line="20"><span class="w">                </span><span class="n">NetworkTableInstance</span><span class="p">.</span><span class="na">getDefault</span><span class="p">().</span><span class="na">getDoubleTopic</span><span class="p">(</span><span class="s">&quot;Drivetrain/debug/FRPosition&quot;</span><span class="p">).</span><span class="na">publish</span><span class="p">(),</span>
+</span><span data-line="21"><span class="w">                </span><span class="n">NetworkTableInstance</span><span class="p">.</span><span class="na">getDefault</span><span class="p">().</span><span class="na">getDoubleTopic</span><span class="p">(</span><span class="s">&quot;Drivetrain/debug/BLPosition&quot;</span><span class="p">).</span><span class="na">publish</span><span class="p">(),</span>
+</span><span data-line="22"><span class="w">                </span><span class="n">NetworkTableInstance</span><span class="p">.</span><span class="na">getDefault</span><span class="p">().</span><span class="na">getDoubleTopic</span><span class="p">(</span><span class="s">&quot;Drivetrain/debug/BRPosition&quot;</span><span class="p">).</span><span class="na">publish</span><span class="p">()</span>
+</span><span data-line="23"><span class="w">        </span><span class="p">};</span>
+</span><span data-line="24"><span class="w">        </span><span class="n">MotorTorque</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NetworkTableInstance</span><span class="p">.</span><span class="na">getDefault</span><span class="p">().</span><span class="na">getDoubleTopic</span><span class="p">(</span><span class="s">&quot;Drivetrain/MotorTorque&quot;</span><span class="p">).</span><span class="na">publish</span><span class="p">();</span>
+</span><span data-line="25">
+</span><span data-line="26"><span class="w">        </span><span class="n">vision</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Utils</span><span class="p">.</span><span class="na">isSimulation</span><span class="p">()</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SimVision</span><span class="p">()</span>
+</span><span data-line="27"><span class="w">                </span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">NetworkTableInstance</span><span class="p">.</span><span class="na">getDefault</span><span class="p">().</span><span class="na">getTable</span><span class="p">(</span><span class="s">&quot;photonvision&quot;</span><span class="p">).</span><span class="na">getTopic</span><span class="p">(</span><span class="s">&quot;version&quot;</span><span class="p">).</span><span class="na">exists</span><span class="p">())</span>
+</span><span data-line="28"><span class="w">                        </span><span class="o">?</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RealVision</span><span class="p">()</span>
+</span><span data-line="29"><span class="w">                        </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+</span><span data-line="30">
+</span><span data-line="31"><span class="w">        </span><span class="n">AutoDrive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ApplyRobotSpeeds</span><span class="p">()</span>
+</span><span data-line="32"><span class="w">                </span><span class="p">.</span><span class="na">withDriveRequestType</span><span class="p">(</span><span class="n">DriveRequestType</span><span class="p">.</span><span class="na">OpenLoopVoltage</span><span class="p">)</span>
+</span><span data-line="33"><span class="w">                </span><span class="p">.</span><span class="na">withSteerRequestType</span><span class="p">(</span><span class="n">SteerRequestType</span><span class="p">.</span><span class="na">Position</span><span class="p">)</span>
+</span><span data-line="34"><span class="w">                </span><span class="p">.</span><span class="na">withDesaturateWheelSpeeds</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</span><span data-line="35">
+</span><span data-line="36"><span class="w">        </span><span class="n">AutoInit</span><span class="p">();</span>
+</span><span data-line="37"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Utils</span><span class="p">.</span><span class="na">isSimulation</span><span class="p">())</span>
+</span><span data-line="38"><span class="w">            </span><span class="n">startSim</span><span class="p">();</span>
+</span><span data-line="39"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="40">
+</span><span data-line="41"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Command</span><span class="w"> </span><span class="nf">drive</span><span class="p">(</span><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">SwerveRequest</span><span class="o">&gt;</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="42"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">run</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">setControl</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="na">get</span><span class="p">()));</span>
+</span><span data-line="43"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="44">
+</span><span data-line="45"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Command</span><span class="w"> </span><span class="nf">drive</span><span class="p">(</span><span class="n">FieldPieces</span><span class="w"> </span><span class="n">pieces</span><span class="p">,</span><span class="w"> </span><span class="n">ReefSide</span><span class="w"> </span><span class="n">side</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="46"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">drive</span><span class="p">(</span>
+</span><span data-line="47"><span class="w">                </span><span class="n">pieces</span><span class="p">.</span><span class="na">getItemPose</span><span class="p">(</span><span class="n">getState</span><span class="p">().</span><span class="na">Pose</span><span class="p">,</span><span class="w"> </span><span class="n">DriverStation</span><span class="p">.</span><span class="na">getAlliance</span><span class="p">().</span><span class="na">orElseThrow</span><span class="p">()).</span><span class="na">transformBy</span><span class="p">(</span><span class="n">side</span><span class="p">.</span><span class="na">getPose</span><span class="p">()))</span>
+</span><span data-line="48"><span class="w">                </span><span class="p">.</span><span class="na">alongWith</span><span class="p">(</span><span class="n">Commands</span><span class="p">.</span><span class="na">runOnce</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">FullState</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">withDrivetrainTarget</span><span class="p">(</span><span class="n">pieces</span><span class="p">,</span><span class="w"> </span><span class="n">side</span><span class="p">)));</span>
+</span><span data-line="49"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="50">
+</span><span data-line="51"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Command</span><span class="w"> </span><span class="nf">drive</span><span class="p">(</span><span class="n">Pose2d</span><span class="w"> </span><span class="n">CenterPose</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="52"><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="53"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PathfindingCommand</span><span class="p">(</span>
+</span><span data-line="54"><span class="w">                    </span><span class="n">offsetPose</span><span class="p">(</span><span class="n">CenterPose</span><span class="p">),</span>
+</span><span data-line="55"><span class="w">                    </span><span class="n">frc</span><span class="p">.</span><span class="na">robot</span><span class="p">.</span><span class="na">Auto</span><span class="p">.</span><span class="na">Constants</span><span class="p">.</span><span class="na">Constraints</span><span class="p">,</span>
+</span><span data-line="56"><span class="w">                    </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">getState</span><span class="p">().</span><span class="na">Pose</span><span class="p">,</span>
+</span><span data-line="57"><span class="w">                    </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">getState</span><span class="p">().</span><span class="na">Speeds</span><span class="p">,</span>
+</span><span data-line="58"><span class="w">                    </span><span class="p">(</span><span class="n">speeds</span><span class="p">,</span><span class="w"> </span><span class="n">ff</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">setControl</span><span class="p">(</span>
+</span><span data-line="59"><span class="w">                            </span><span class="n">AutoDrive</span>
+</span><span data-line="60"><span class="w">                                    </span><span class="p">.</span><span class="na">withSpeeds</span><span class="p">(</span><span class="n">speeds</span><span class="p">)</span>
+</span><span data-line="61"><span class="w">                                    </span><span class="p">.</span><span class="na">withDesaturateWheelSpeeds</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+</span><span data-line="62"><span class="w">                                    </span><span class="p">.</span><span class="na">withWheelForceFeedforwardsX</span><span class="p">(</span><span class="n">ff</span><span class="p">.</span><span class="na">robotRelativeForcesX</span><span class="p">())</span>
+</span><span data-line="63"><span class="w">                                    </span><span class="p">.</span><span class="na">withWheelForceFeedforwardsY</span><span class="p">(</span><span class="n">ff</span><span class="p">.</span><span class="na">robotRelativeForcesY</span><span class="p">())),</span>
+</span><span data-line="64"><span class="w">                    </span><span class="k">new</span><span class="w"> </span><span class="n">PPHolonomicDriveController</span><span class="p">(</span>
+</span><span data-line="65"><span class="w">                            </span><span class="k">new</span><span class="w"> </span><span class="n">PIDConstants</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span>
+</span><span data-line="66"><span class="w">                            </span><span class="k">new</span><span class="w"> </span><span class="n">PIDConstants</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.02</span><span class="p">)),</span>
+</span><span data-line="67"><span class="w">                    </span><span class="n">RobotConfig</span><span class="p">.</span><span class="na">fromGUISettings</span><span class="p">(),</span>
+</span><span data-line="68"><span class="w">                    </span><span class="k">this</span><span class="p">);</span>
+</span><span data-line="69"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="70"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+</span><span data-line="71"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="72"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="73">
+</span><span data-line="74"><span class="w">    </span><span class="cm">/**</span>
+</span><span data-line="75"><span class="cm">    * offset pose from AprilTagFieldLayout raw output</span>
+</span><span data-line="76"><span class="cm">    *</span>
+</span><span data-line="77"><span class="cm">    * @param pose</span>
+</span><span data-line="78"><span class="cm">    * @return</span>
+</span><span data-line="79"><span class="cm">    */</span>
+</span><span data-line="80"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Pose2d</span><span class="w"> </span><span class="nf">offsetPose</span><span class="p">(</span><span class="n">Pose2d</span><span class="w"> </span><span class="n">pose</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="81"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">pose</span><span class="p">.</span><span class="na">plus</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Transform2d</span><span class="p">(</span><span class="n">frc</span><span class="p">.</span><span class="na">robot</span><span class="p">.</span><span class="na">Auto</span><span class="p">.</span><span class="na">Constants</span><span class="p">.</span><span class="na">RobotSize</span><span class="p">,</span><span class="w"> </span><span class="n">Centimeters</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">Rotation2d</span><span class="p">.</span><span class="na">k180deg</span><span class="p">));</span>
+</span><span data-line="82"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="83">
+</span><span data-line="84"><span class="w">    </span><span class="nd">@Override</span>
+</span><span data-line="85"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">resetPose</span><span class="p">(</span><span class="n">Pose2d</span><span class="w"> </span><span class="n">pose</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="86"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">simDrive</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
+</span><span data-line="87"><span class="w">            </span><span class="n">simDrive</span><span class="p">.</span><span class="na">mapleSimDrive</span><span class="p">.</span><span class="na">setSimulationWorldPose</span><span class="p">(</span><span class="n">pose</span><span class="p">);</span>
+</span><span data-line="88"><span class="w">        </span><span class="n">Timer</span><span class="p">.</span><span class="na">delay</span><span class="p">(</span><span class="mf">0.05</span><span class="p">);</span>
+</span><span data-line="89"><span class="w">        </span><span class="kd">super</span><span class="p">.</span><span class="na">resetPose</span><span class="p">(</span><span class="n">pose</span><span class="p">);</span>
+</span><span data-line="90"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="91">
+</span><span data-line="92"><span class="w">    </span><span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
+</span><span data-line="93"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">startSim</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="94"><span class="w">        </span><span class="n">simDrive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SimDrive</span><span class="p">(</span>
+</span><span data-line="95"><span class="w">                </span><span class="n">SimLoop</span><span class="p">,</span>
+</span><span data-line="96"><span class="w">                </span><span class="n">Constants</span><span class="p">.</span><span class="na">RobotWeight</span><span class="p">,</span>
+</span><span data-line="97"><span class="w">                </span><span class="n">Constants</span><span class="p">.</span><span class="na">BumperSize</span><span class="p">,</span>
+</span><span data-line="98"><span class="w">                </span><span class="n">Constants</span><span class="p">.</span><span class="na">BumperSize</span><span class="p">,</span>
+</span><span data-line="99"><span class="w">                </span><span class="n">DCMotor</span><span class="p">.</span><span class="na">getKrakenX60Foc</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+</span><span data-line="100"><span class="w">                </span><span class="n">DCMotor</span><span class="p">.</span><span class="na">getKrakenX60Foc</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+</span><span data-line="101"><span class="w">                </span><span class="n">Constants</span><span class="p">.</span><span class="na">WheelCoF</span><span class="p">,</span>
+</span><span data-line="102"><span class="w">                </span><span class="n">getModuleLocations</span><span class="p">(),</span>
+</span><span data-line="103"><span class="w">                </span><span class="n">getPigeon2</span><span class="p">(),</span>
+</span><span data-line="104"><span class="w">                </span><span class="n">getModules</span><span class="p">(),</span>
+</span><span data-line="105"><span class="w">                </span><span class="n">Constants</span><span class="p">.</span><span class="na">SwerveMod</span><span class="p">.</span><span class="na">FrontLeft</span><span class="p">.</span><span class="na">constants</span><span class="p">,</span>
+</span><span data-line="106"><span class="w">                </span><span class="n">Constants</span><span class="p">.</span><span class="na">SwerveMod</span><span class="p">.</span><span class="na">FrontRight</span><span class="p">.</span><span class="na">constants</span><span class="p">,</span>
+</span><span data-line="107"><span class="w">                </span><span class="n">Constants</span><span class="p">.</span><span class="na">SwerveMod</span><span class="p">.</span><span class="na">BackLeft</span><span class="p">.</span><span class="na">constants</span><span class="p">,</span>
+</span><span data-line="108"><span class="w">                </span><span class="n">Constants</span><span class="p">.</span><span class="na">SwerveMod</span><span class="p">.</span><span class="na">BackRight</span><span class="p">.</span><span class="na">constants</span><span class="p">);</span>
+</span><span data-line="109"><span class="w">        </span><span class="n">SimNotifer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Notifier</span><span class="p">(</span><span class="n">simDrive</span><span class="p">::</span><span class="n">update</span><span class="p">);</span>
+</span><span data-line="110"><span class="w">        </span><span class="n">SimNotifer</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">&quot;SimDrivetrainNotifer&quot;</span><span class="p">);</span>
+</span><span data-line="111"><span class="w">        </span><span class="n">SimNotifer</span><span class="p">.</span><span class="na">startPeriodic</span><span class="p">(</span><span class="n">SimLoop</span><span class="p">.</span><span class="na">in</span><span class="p">(</span><span class="n">Seconds</span><span class="p">));</span>
+</span><span data-line="112"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="113">
+</span><span data-line="114"><span class="w">    </span><span class="nd">@Override</span>
+</span><span data-line="115"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">periodic</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="116"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">OperatorPerspectiveApplied</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">DriverStation</span><span class="p">.</span><span class="na">isDisabled</span><span class="p">())</span>
+</span><span data-line="117"><span class="w">            </span><span class="n">DriverStation</span><span class="p">.</span><span class="na">getAlliance</span><span class="p">().</span><span class="na">ifPresent</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">setOperatorPerspectiveForward</span><span class="p">(</span>
+</span><span data-line="118"><span class="w">                    </span><span class="n">color</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Alliance</span><span class="p">.</span><span class="na">Red</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">Constants</span><span class="p">.</span><span class="na">RedAlliancePerspective</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Constants</span><span class="p">.</span><span class="na">BlueAlliancePerspective</span><span class="p">));</span>
+</span><span data-line="119"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">CANCoderPositions</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span data-line="120"><span class="w">            </span><span class="n">CANCoderPositions</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="mf">180.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">getModule</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">getEncoder</span><span class="p">().</span><span class="na">getAbsolutePosition</span><span class="p">().</span><span class="na">getValue</span><span class="p">().</span><span class="na">in</span><span class="p">(</span><span class="n">Degrees</span><span class="p">));</span>
+</span><span data-line="121">
+</span><span data-line="122"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">vision</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">vision</span><span class="p">.</span><span class="na">getPose</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="123"><span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="124"><span class="w">                </span><span class="n">addVisionMeasurement</span><span class="p">(</span><span class="n">vision</span><span class="p">.</span><span class="na">getPose</span><span class="p">(),</span><span class="w"> </span><span class="n">Utils</span><span class="p">.</span><span class="na">getCurrentTimeSeconds</span><span class="p">());</span>
+</span><span data-line="125"><span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="126"><span class="w">                </span><span class="n">DriverStation</span><span class="p">.</span><span class="na">reportWarning</span><span class="p">(</span>
+</span><span data-line="127"><span class="w">                        </span><span class="s">&quot;Fucked up at updating Pose2d with PhotonVision with \n %s&quot;</span><span class="p">.</span><span class="na">formatted</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">()),</span>
+</span><span data-line="128"><span class="w">                        </span><span class="n">e</span><span class="p">.</span><span class="na">getStackTrace</span><span class="p">());</span>
+</span><span data-line="129"><span class="w">            </span><span class="p">}</span>
+</span><span data-line="130"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="131">
+</span><span data-line="132"><span class="w">        </span><span class="n">vision</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">getState</span><span class="p">().</span><span class="na">Pose</span><span class="p">);</span>
+</span><span data-line="133"><span class="w">        </span><span class="n">MotorTorque</span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">getModule</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="na">getDriveMotor</span><span class="p">().</span><span class="na">getStatorCurrent</span><span class="p">().</span><span class="na">getValueAsDouble</span><span class="p">()</span><span class="o">*</span><span class="n">getModule</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="na">getDriveMotor</span><span class="p">().</span><span class="na">getMotorKT</span><span class="p">().</span><span class="na">getValueAsDouble</span><span class="p">()</span><span class="o">*</span><span class="n">Constants</span><span class="p">.</span><span class="na">DriveGearRatio</span><span class="o">*</span><span class="mf">0.9</span><span class="o">/</span><span class="n">Constants</span><span class="p">.</span><span class="na">WheelRadius</span><span class="p">.</span><span class="na">times</span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="na">PI</span><span class="p">).</span><span class="na">in</span><span class="p">(</span><span class="n">Meters</span><span class="p">));</span>
+</span><span data-line="134"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="135">
+</span><span data-line="136"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">AutoInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="137"><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="138"><span class="w">            </span><span class="n">AutoBuilder</span><span class="p">.</span><span class="na">configure</span><span class="p">(</span>
+</span><span data-line="139"><span class="w">                    </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">getState</span><span class="p">().</span><span class="na">Pose</span><span class="p">,</span>
+</span><span data-line="140"><span class="w">                    </span><span class="k">this</span><span class="p">::</span><span class="n">resetPose</span><span class="p">,</span>
+</span><span data-line="141"><span class="w">                    </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">getState</span><span class="p">().</span><span class="na">Speeds</span><span class="p">,</span>
+</span><span data-line="142"><span class="w">                    </span><span class="p">(</span><span class="n">speeds</span><span class="p">,</span><span class="w"> </span><span class="n">ff</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">setControl</span><span class="p">(</span>
+</span><span data-line="143"><span class="w">                            </span><span class="n">AutoDrive</span>
+</span><span data-line="144"><span class="w">                                    </span><span class="p">.</span><span class="na">withSpeeds</span><span class="p">(</span><span class="n">speeds</span><span class="p">)</span>
+</span><span data-line="145"><span class="w">                                    </span><span class="p">.</span><span class="na">withDesaturateWheelSpeeds</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+</span><span data-line="146"><span class="w">                                    </span><span class="p">.</span><span class="na">withWheelForceFeedforwardsX</span><span class="p">(</span><span class="n">ff</span><span class="p">.</span><span class="na">robotRelativeForcesX</span><span class="p">())</span>
+</span><span data-line="147"><span class="w">                                    </span><span class="p">.</span><span class="na">withWheelForceFeedforwardsY</span><span class="p">(</span><span class="n">ff</span><span class="p">.</span><span class="na">robotRelativeForcesY</span><span class="p">())),</span>
+</span><span data-line="148"><span class="w">                    </span><span class="k">new</span><span class="w"> </span><span class="n">PPHolonomicDriveController</span><span class="p">(</span>
+</span><span data-line="149"><span class="w">                            </span><span class="k">new</span><span class="w"> </span><span class="n">PIDConstants</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span>
+</span><span data-line="150"><span class="w">                            </span><span class="k">new</span><span class="w"> </span><span class="n">PIDConstants</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.02</span><span class="p">)),</span>
+</span><span data-line="151"><span class="w">                    </span><span class="n">RobotConfig</span><span class="p">.</span><span class="na">fromGUISettings</span><span class="p">(),</span>
+</span><span data-line="152"><span class="w">                    </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">DriverStation</span><span class="p">.</span><span class="na">getAlliance</span><span class="p">().</span><span class="na">get</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Alliance</span><span class="p">.</span><span class="na">Red</span><span class="p">,</span>
+</span><span data-line="153"><span class="w">                    </span><span class="k">this</span><span class="p">);</span>
+</span><span data-line="154"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="155"><span class="w">            </span><span class="n">DriverStation</span><span class="p">.</span><span class="na">reportError</span><span class="p">(</span><span class="s">&quot;Fucked up at loading PathPlanner with \n %s&quot;</span><span class="p">.</span><span class="na">formatted</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">()),</span>
+</span><span data-line="156"><span class="w">                    </span><span class="n">e</span><span class="p">.</span><span class="na">getStackTrace</span><span class="p">());</span>
+</span><span data-line="157"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="158"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="159">
+</span><span data-line="160"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Drivetrain</span><span class="w"> </span><span class="nf">system</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="161"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Constants</span><span class="p">.</span><span class="na">createDrivetrain</span><span class="p">();</span>
+</span><span data-line="162"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="163"><span class="p">}</span>
+</span></pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">RobotContainer.java</span><a class="headerlink" href="#id3" title="連結到這個程式碼">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">package</span><span class="w"> </span><span class="nn">frc.robot</span><span class="p">;</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">RobotContainer</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Drivetrain</span><span class="w"> </span><span class="n">drivetrain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Drivetrain</span><span class="p">.</span><span class="na">system</span><span class="p">();</span>
+</span><span data-line="5"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">RealElevator</span><span class="w"> </span><span class="n">elevator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RealElevator</span><span class="p">.</span><span class="na">system</span><span class="p">();</span>
+</span><span data-line="6"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Auto</span><span class="w"> </span><span class="n">auto</span><span class="p">;</span>
+</span><span data-line="7"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">XboxController</span><span class="w"> </span><span class="n">joystick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">XboxController</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="8"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Telemetry</span><span class="w"> </span><span class="n">telemetry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Telemetry</span><span class="p">();</span>
+</span><span data-line="9"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">SpeedMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.4</span><span class="p">;</span>
+</span><span data-line="10"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">SwerveRequest</span><span class="p">.</span><span class="na">FieldCentric</span><span class="w"> </span><span class="n">driveRequest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SwerveRequest</span><span class="p">.</span><span class="na">FieldCentric</span><span class="p">()</span>
+</span><span data-line="11"><span class="w">        </span><span class="p">.</span><span class="na">withDeadband</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">MaxVelocity</span><span class="p">.</span><span class="na">times</span><span class="p">(</span><span class="mf">0.05</span><span class="p">))</span>
+</span><span data-line="12"><span class="w">        </span><span class="p">.</span><span class="na">withRotationalDeadband</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">MaxOmega</span><span class="p">.</span><span class="na">times</span><span class="p">(</span><span class="mf">0.05</span><span class="p">))</span>
+</span><span data-line="13"><span class="w">        </span><span class="p">.</span><span class="na">withDriveRequestType</span><span class="p">(</span><span class="n">DriveRequestType</span><span class="p">.</span><span class="na">OpenLoopVoltage</span><span class="p">)</span>
+</span><span data-line="14"><span class="w">        </span><span class="p">.</span><span class="na">withSteerRequestType</span><span class="p">(</span><span class="n">SteerRequestType</span><span class="p">.</span><span class="na">Position</span><span class="p">)</span>
+</span><span data-line="15"><span class="w">        </span><span class="p">.</span><span class="na">withDesaturateWheelSpeeds</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</span><span data-line="16">
+</span><span data-line="17"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">RobotContainer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="18"><span class="w">        </span><span class="n">auto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Auto</span><span class="p">(</span><span class="n">drivetrain</span><span class="p">,</span><span class="w"> </span><span class="n">elevator</span><span class="p">);</span>
+</span><span data-line="19">
+</span><span data-line="20"><span class="w">        </span><span class="n">drivetrain</span><span class="p">.</span><span class="na">setDefaultCommand</span><span class="p">(</span><span class="n">drivetrain</span><span class="p">.</span><span class="na">drive</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">driveRequest</span>
+</span><span data-line="21"><span class="w">        </span><span class="p">.</span><span class="na">withVelocityX</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">MaxVelocity</span><span class="p">.</span><span class="na">times</span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="na">getLeftX</span><span class="p">()</span><span class="o">*</span><span class="n">SpeedMode</span><span class="p">))</span>
+</span><span data-line="22"><span class="w">        </span><span class="p">.</span><span class="na">withVelocityY</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">MaxVelocity</span><span class="p">.</span><span class="na">times</span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="na">getLeftY</span><span class="p">()</span><span class="o">*</span><span class="n">SpeedMode</span><span class="p">))</span>
+</span><span data-line="23"><span class="w">        </span><span class="p">.</span><span class="na">withRotationalRate</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">MaxOmega</span><span class="p">.</span><span class="na">times</span><span class="p">(</span><span class="o">-</span><span class="n">joystick</span><span class="p">.</span><span class="na">getRightX</span><span class="p">()))));</span>
+</span><span data-line="24"><span class="w">        </span><span class="n">configureBindings</span><span class="p">();</span>
+</span><span data-line="25"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="26">
+</span><span data-line="27"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">configureBindings</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="28"><span class="w">        </span><span class="c1">// new Trigger(() -&gt; joystick.getLeftBumperButton()).and(() -&gt; SpeedMode &gt;= 0)</span>
+</span><span data-line="29"><span class="w">        </span><span class="c1">//   .onTrue(Commands.runOnce(() -&gt; SpeedMode -= 0.1));</span>
+</span><span data-line="30"><span class="w">        </span><span class="c1">// new Trigger(() -&gt; joystick.getRightBumperButton()).and(() -&gt; SpeedMode &lt;= 1)</span>
+</span><span data-line="31"><span class="w">        </span><span class="c1">//   .onTrue(Commands.runOnce(() -&gt; SpeedMode += 0.1));</span>
+</span><span data-line="32"><span class="w">        </span><span class="c1">// new Trigger(() -&gt; joystick.getStartButton())</span>
+</span><span data-line="33"><span class="w">        </span><span class="c1">//   .onTrue(Commands.runOnce(() -&gt; drivetrain.seedFieldCentric()));</span>
+</span><span data-line="34"><span class="w">        </span><span class="c1">// new Trigger(() -&gt; joystick.getXButton())</span>
+</span><span data-line="35"><span class="w">        </span><span class="c1">//   .onTrue(drivetrain.drive(FieldPieces.CoralStation));</span>
+</span><span data-line="36"><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">Trigger</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">joystick</span><span class="p">.</span><span class="na">getRawButton</span><span class="p">(</span><span class="mi">1</span><span class="p">)).</span><span class="na">and</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">SpeedMode</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="37"><span class="w">        </span><span class="p">.</span><span class="na">onTrue</span><span class="p">(</span><span class="n">Commands</span><span class="p">.</span><span class="na">runOnce</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">SpeedMode</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mf">0.1</span><span class="p">));</span>
+</span><span data-line="38"><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">Trigger</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">joystick</span><span class="p">.</span><span class="na">getRawButton</span><span class="p">(</span><span class="mi">2</span><span class="p">)).</span><span class="na">and</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">SpeedMode</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+</span><span data-line="39"><span class="w">        </span><span class="p">.</span><span class="na">onTrue</span><span class="p">(</span><span class="n">Commands</span><span class="p">.</span><span class="na">runOnce</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">SpeedMode</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">0.1</span><span class="p">));</span>
+</span><span data-line="40">
+</span><span data-line="41"><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">Trigger</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">joystick</span><span class="p">.</span><span class="na">getStartButton</span><span class="p">())</span>
+</span><span data-line="42"><span class="w">        </span><span class="p">.</span><span class="na">onTrue</span><span class="p">(</span><span class="n">Commands</span><span class="p">.</span><span class="na">runOnce</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">drivetrain</span><span class="p">.</span><span class="na">seedFieldCentric</span><span class="p">()));</span>
+</span><span data-line="43"><span class="w">        </span><span class="n">drivetrain</span><span class="p">.</span><span class="na">registerTelemetry</span><span class="p">(</span><span class="n">telemetry</span><span class="p">::</span><span class="n">telemerize</span><span class="p">);</span>
+</span><span data-line="44"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="45">
+</span><span data-line="46"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Command</span><span class="w"> </span><span class="nf">getAutonomousCommand</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="47"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">auto</span><span class="p">.</span><span class="na">getAuto</span><span class="p">();</span>
+</span><span data-line="48"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="49"><span class="p">}</span>
+</span></pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>之後的小專案在一開始沒那麼複雜的時候Timed Based跟Command Based都會給，不過到比較複雜的專案(例如向量底盤)就會只有Command Based的程式</p>
+</div>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>回到頂部</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="MotorIntro.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>上一頁</span><div class="title">馬達與控制器簡介</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="../NotComplexProjects/index.html">
+      <div class="page-info">
+        <span>下一頁</span>
+        <div class="title">基礎專案</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, Justmore5mins</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials"></div>
+    </div>
+  </div>
+</footer>
+      <script src="../_static/documentation_options.js?v=0d9984b1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=cbf116e0"></script>
+      <script src="../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

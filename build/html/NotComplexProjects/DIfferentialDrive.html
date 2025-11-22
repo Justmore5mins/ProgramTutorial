@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-accent-color="violet" data-content_root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>KOP底盤程式 - FRC程式資料庫 說明文件</title><link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜尋" href="../search.html" /><link rel="prev" title="基礎專案" href="index.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=dcd234e3" />
+    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../_static/website.css?v=c3fe7fb9" />
+    <link media="print" rel="stylesheet" type="text/css" href="../_static/print.css?v=20ff2c19" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="../_static/website.css?v=c3fe7fb9" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="KOP底盤程式"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../index.html">
+      
+      
+      <strong>FRC程式資料庫</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../search.html" method="get">
+  <input type="text" name="q" placeholder="搜尋" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials"></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="切換到亮色模式"
+data-aria-light="切換到暗黑模式"
+data-aria-dark="切換到自動模式">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">這是目錄</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Prefixes/index.html">先備知識</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Prefixes/JavaLanguage.html">要裝的東西跟Java的語法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Prefixes/MotorIntro.html">馬達與控制器簡介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Prefixes/ProgrammingStructures.html">FRC的程式架構</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">基礎專案</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">KOP底盤程式</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>該頁內容</h3><ul>
+<li><a class="reference internal" href="#id1">&#38656;&#35201;&#30340;&#30828;&#39636;</a></li>
+<li><a class="reference internal" href="#id3">&#22823;&#27010;&#35611;&#35299;</a></li>
+<li><a class="reference internal" href="#id4">&#21021;&#22987;&#21270;&#33287;&#23450;&#32681;&#35722;&#25976;</a></li>
+<li><a class="reference internal" href="#id6">&#23567;&#32317;&#32080;</a></li>
+</ul>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">FRC程式資料庫</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="index.html"><span itemprop="name">基礎專案</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">KOP底盤程式</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="kop">
+<h1>KOP底盤程式<a class="headerlink" href="#kop" title="連結到這個標頭">¶</a></h1>
+<section id="id1">
+<h2>需要的硬體<a class="headerlink" href="#id1" title="連結到這個標頭">¶</a></h2>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>馬達x2 / 4</p></li>
+<li><p>馬達控制器 x2 / 4</p></li>
+<li><p>配好電的底盤(建議有 <a class="reference external" href="https://docs.wpilib.org/en/2027/docs/hardware/sensors/gyros-hardware.html">陀螺儀</a> )</p></li>
+</ol>
+</div></blockquote>
+</section>
+<section id="id3">
+<h2>大概講解<a class="headerlink" href="#id3" title="連結到這個標頭">¶</a></h2>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">4K高清底盤</span><a class="headerlink" href="#id7" title="連結到這個程式碼">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span data-line="1">    這是前面
+</span><span data-line="2"> 輪距TrackWidth
+</span><span data-line="3">|--------------|
+</span><span data-line="4">-----------------
+</span><span data-line="5">| |  x       | |   這
+</span><span data-line="6">  |  ^       |     是
+</span><span data-line="7">  |  └&gt;y     |     右
+</span><span data-line="8">| |          | |   邊
+</span><span data-line="9">-----------------
+</span><span data-line="10">
+</span><span data-line="11">⬇️請想像他是圓的
+</span><span data-line="12">┌--------┐
+</span><span data-line="13">|        |
+</span><span data-line="14">|--------| R:直徑，輪周長:πR
+</span><span data-line="15">└--------┘
+</span><span data-line="16">
+</span><span data-line="17">如果是用KOP的話，要記得改成自己是適合的齒輪比喔
+</span></pre></div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">小訣竅</p>
+<p>如果還沒有自己寫程式的習慣的話，在變數命名這方面建議用 <code class="docutils literal notranslate"><span class="pre">有意義</span></code> 的方式命名(例如LeftID, RightID等)，因為可能只要換個檔案回來你就會忘記那個變數a是什麼了</p>
+</div>
+</section>
+<section id="id4">
+<h2>初始化與定義變數<a class="headerlink" href="#id4" title="連結到這個標頭">¶</a></h2>
+<p>常數們:</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">Constants.java</span><a class="headerlink" href="#id8" title="連結到這個程式碼">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">LeftID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="c1">//左邊的ID</span>
+</span><span data-line="2"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">RightID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span><span class="w"> </span><span class="c1">//右邊的ID</span>
+</span><span data-line="3"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">WheelCirc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Inches</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">6</span><span class="p">).</span><span class="na">times</span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="na">PI</span><span class="p">).</span><span class="na">in</span><span class="p">(</span><span class="n">Meters</span><span class="p">);</span><span class="w"> </span><span class="c1">//輪子的圓周</span>
+</span><span data-line="4"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">GearRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10.71</span><span class="p">;</span><span class="w"> </span><span class="c1">//齒輪比</span>
+</span><span data-line="5"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">PositionConvertionFactor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WheelCirc</span><span class="o">/</span><span class="n">GearRatio</span><span class="p">;</span><span class="w"> </span><span class="c1">//位置轉換係數</span>
+</span><span data-line="6"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">VelocityConvertionFactor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PositionConvertionFactor</span><span class="o">/</span><span class="mi">60</span><span class="p">;</span><span class="w"> </span><span class="c1">//速度轉換係數</span>
+</span><span data-line="7"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Distance</span><span class="w"> </span><span class="n">TrackWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Centimeters</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">65</span><span class="p">);</span><span class="w"> </span><span class="c1">//兩個輪子的間距</span>
+</span><span data-line="8"><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">NavXComType</span><span class="w"> </span><span class="n">GyroCom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NavXComType</span><span class="p">.</span><span class="na">kMXP_SPI</span><span class="p">;</span><span class="w"> </span><span class="c1">//設定陀螺儀的連接方式</span>
+</span></pre></div>
+</div>
+</div>
+<p>定義需要的變數</p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">DifferentialDrive.java</span><a class="headerlink" href="#id9" title="連結到這個程式碼">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kd">public</span><span class="w"> </span><span class="n">SparkMax</span><span class="w"> </span><span class="n">LeftMotor</span><span class="p">,</span><span class="w"> </span><span class="n">RightMotor</span><span class="p">;</span><span class="w"> </span><span class="c1">//差速驅動只有兩個馬達</span>
+</span><span data-line="2"><span class="kd">public</span><span class="w"> </span><span class="n">RelativeEncoder</span><span class="w"> </span><span class="n">LeftEncoder</span><span class="p">,</span><span class="w"> </span><span class="n">RightEncoder</span><span class="p">;</span><span class="w"> </span><span class="c1">//兩個編碼器</span>
+</span><span data-line="3"><span class="kd">public</span><span class="w"> </span><span class="n">AHRS</span><span class="w"> </span><span class="n">gyro</span><span class="p">;</span><span class="w"> </span><span class="c1">//陀螺儀</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDriveKinematics</span><span class="w"> </span><span class="n">kinematics</span><span class="p">;</span><span class="w"> </span><span class="c1">//差速驅動運動學</span>
+</span><span data-line="6"><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDrivePoseEstimator</span><span class="w"> </span><span class="n">PoseEstimator</span><span class="p">;</span><span class="w"> </span><span class="c1">//位置估計器</span>
+</span><span data-line="7"><span class="kd">private</span><span class="w"> </span><span class="n">SparkMaxConfig</span><span class="w"> </span><span class="n">LeftConfig</span><span class="p">,</span><span class="w"> </span><span class="n">RightConfig</span><span class="p">;</span><span class="w"> </span><span class="c1">//馬達設定</span>
+</span></pre></div>
+</div>
+</div>
+<dl class="simple">
+<dt>小補充</dt><dd><p>Encoder(編碼器)是可以藉由 <a class="reference external" href="https://hackmd.io/&#64;0914FRC10390programming/By-QB2FZel">磁編碼器</a> 來拿到精準的位置，速度，加速度(部分)等等的資料，對於反饋型控制有相當程度的幫助</p>
+</dd>
+</dl>
+<p>把剛剛的變數初始化</p>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">DifferentialDrive.java</span><a class="headerlink" href="#id10" title="連結到這個程式碼">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">//把各個東西都初始化</span>
+</span><span data-line="2"><span class="n">LeftMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparkMax</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">LeftID</span><span class="p">,</span><span class="w"> </span><span class="n">MotorType</span><span class="p">.</span><span class="na">kBrushless</span><span class="p">);</span><span class="w"> </span><span class="c1">//這邊用無刷馬達示範</span>
+</span><span data-line="3"><span class="n">RightMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparkMax</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">RightID</span><span class="p">,</span><span class="w"> </span><span class="n">MotorType</span><span class="p">.</span><span class="na">kBrushless</span><span class="p">);</span>
+</span><span data-line="4"><span class="n">LeftEncoder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LeftMotor</span><span class="p">.</span><span class="na">getEncoder</span><span class="p">();</span>
+</span><span data-line="5"><span class="n">RightEncoder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RightMotor</span><span class="p">.</span><span class="na">getEncoder</span><span class="p">();</span>
+</span><span data-line="6"><span class="n">gyro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AHRS</span><span class="p">(</span><span class="n">NavXComType</span><span class="p">.</span><span class="na">kMXP_SPI</span><span class="p">);</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="n">kinematics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveKinematics</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">SwerveModules</span><span class="p">.</span><span class="na">TrackWidth</span><span class="p">);</span>
+</span><span data-line="9"><span class="n">PoseEstimator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDrivePoseEstimator</span><span class="p">(</span>
+</span><span data-line="10"><span class="w">    </span><span class="n">kinematics</span><span class="p">,</span>
+</span><span data-line="11"><span class="w">    </span><span class="n">gyro</span><span class="p">.</span><span class="na">getRotation2d</span><span class="p">(),</span>
+</span><span data-line="12"><span class="w">    </span><span class="n">getPosition</span><span class="p">().</span><span class="na">leftMeters</span><span class="p">,</span>
+</span><span data-line="13"><span class="w">    </span><span class="n">getPosition</span><span class="p">().</span><span class="na">rightMeters</span><span class="p">,</span>
+</span><span data-line="14"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Pose2d</span><span class="p">());</span><span class="w"> </span><span class="c1">//初始位置，如果有視覺定位的話通常是由視覺定位提供</span>
+</span><span data-line="15">
+</span><span data-line="16"><span class="n">LeftConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparkMaxConfig</span><span class="p">();</span>
+</span><span data-line="17"><span class="n">RightConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparkMaxConfig</span><span class="p">();</span>
+</span><span data-line="18">
+</span><span data-line="19"><span class="n">LeftConfig</span>
+</span><span data-line="20"><span class="w">    </span><span class="p">.</span><span class="na">idleMode</span><span class="p">(</span><span class="n">IdleMode</span><span class="p">.</span><span class="na">kBrake</span><span class="p">)</span><span class="w"> </span><span class="c1">//自然模式，Brake是急停(比較不滑動)，Coast是滑行</span>
+</span><span data-line="21"><span class="w">    </span><span class="p">.</span><span class="na">inverted</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="c1">//馬達方向</span>
+</span><span data-line="22"><span class="w">    </span><span class="p">.</span><span class="na">voltageCompensation</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="c1">//電壓補償(避免電池電壓過低影響表現)</span>
+</span><span data-line="23"><span class="w">    </span><span class="p">.</span><span class="na">smartCurrentLimit</span><span class="p">(</span><span class="mi">40</span><span class="p">);</span><span class="w"> </span><span class="c1">//電流限制，避免馬達過熱還有降低瞬間對於電池的傷害</span>
+</span><span data-line="24">
+</span><span data-line="25"><span class="n">LeftConfig</span><span class="p">.</span><span class="na">encoder</span>
+</span><span data-line="26"><span class="w">    </span><span class="p">.</span><span class="na">positionConversionFactor</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DrivePositionConvertionFactor</span><span class="p">)</span><span class="w"> </span><span class="c1">//位置轉換因子，將編碼器的單位轉換成實際單位(例如公尺)</span>
+</span><span data-line="27"><span class="w">    </span><span class="p">.</span><span class="na">velocityConversionFactor</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DriveVelocityConvertionFactor</span><span class="p">);</span><span class="w"> </span><span class="c1">//速度轉換因子，將編碼器的單位轉換成實際單位(例如公尺/秒)</span>
+</span><span data-line="28">
+</span><span data-line="29"><span class="n">RightConfig</span>
+</span><span data-line="30"><span class="w">    </span><span class="p">.</span><span class="na">idleMode</span><span class="p">(</span><span class="n">IdleMode</span><span class="p">.</span><span class="na">kBrake</span><span class="p">)</span>
+</span><span data-line="31"><span class="w">    </span><span class="p">.</span><span class="na">inverted</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="c1">//右邊馬達通常需要反轉</span>
+</span><span data-line="32"><span class="w">    </span><span class="p">.</span><span class="na">voltageCompensation</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+</span><span data-line="33"><span class="w">    </span><span class="p">.</span><span class="na">smartCurrentLimit</span><span class="p">(</span><span class="mi">40</span><span class="p">);</span>
+</span><span data-line="34"><span class="n">RightConfig</span><span class="p">.</span><span class="na">encoder</span>
+</span><span data-line="35"><span class="w">    </span><span class="p">.</span><span class="na">positionConversionFactor</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DrivePositionConvertionFactor</span><span class="p">)</span>
+</span><span data-line="36"><span class="w">    </span><span class="p">.</span><span class="na">velocityConversionFactor</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DriveVelocityConvertionFactor</span><span class="p">);</span>
+</span><span data-line="37">
+</span><span data-line="38"><span class="c1">//應用設定到馬達</span>
+</span><span data-line="39"><span class="n">LeftMotor</span><span class="p">.</span><span class="na">configure</span><span class="p">(</span><span class="n">LeftConfig</span><span class="p">,</span><span class="w"> </span><span class="n">ResetMode</span><span class="p">.</span><span class="na">kResetSafeParameters</span><span class="p">,</span><span class="w"> </span><span class="n">PersistMode</span><span class="p">.</span><span class="na">kPersistParameters</span><span class="p">);</span>
+</span><span data-line="40"><span class="n">RightMotor</span><span class="p">.</span><span class="na">configure</span><span class="p">(</span><span class="n">RightConfig</span><span class="p">,</span><span class="w"> </span><span class="n">ResetMode</span><span class="p">.</span><span class="na">kResetSafeParameters</span><span class="p">,</span><span class="w"> </span><span class="n">PersistMode</span><span class="p">.</span><span class="na">kPersistParameters</span><span class="p">);</span>
+</span></pre></div>
+</div>
+</div>
+<p>還有補充需要的函數</p>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">DifferentialDrive.java</span><a class="headerlink" href="#id11" title="連結到這個程式碼">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cm">/**</span>
+</span><span data-line="2"><span class="cm"> * 取得左右輪位置</span>
+</span><span data-line="3"><span class="cm"> *</span>
+</span><span data-line="4"><span class="cm"> * @return DifferentialDriveWheelPositions 左右輪位置</span>
+</span><span data-line="5"><span class="cm"> */</span>
+</span><span data-line="6"><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDriveWheelPositions</span><span class="w"> </span><span class="nf">getPosition</span><span class="p">(){</span>
+</span><span data-line="7"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveWheelPositions</span><span class="p">(</span>
+</span><span data-line="8"><span class="w">        </span><span class="n">LeftEncoder</span><span class="p">.</span><span class="na">getPosition</span><span class="p">(),</span>
+</span><span data-line="9"><span class="w">        </span><span class="n">RightEncoder</span><span class="p">.</span><span class="na">getPosition</span><span class="p">());</span>
+</span><span data-line="10"><span class="p">}</span>
+</span><span data-line="11">
+</span><span data-line="12"><span class="cm">/**</span>
+</span><span data-line="13"><span class="cm"> * 取得左右輪速度</span>
+</span><span data-line="14"><span class="cm"> * @return DifferentialDriveWheelSpeeds 左右輪速度</span>
+</span><span data-line="15"><span class="cm"> */</span>
+</span><span data-line="16"><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDriveWheelSpeeds</span><span class="w"> </span><span class="nf">getSpeeds</span><span class="p">(){</span>
+</span><span data-line="17"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveWheelSpeeds</span><span class="p">(</span>
+</span><span data-line="18"><span class="w">        </span><span class="n">LeftEncoder</span><span class="p">.</span><span class="na">getVelocity</span><span class="p">(),</span>
+</span><span data-line="19"><span class="w">        </span><span class="n">RightEncoder</span><span class="p">.</span><span class="na">getVelocity</span><span class="p">()</span>
+</span><span data-line="20"><span class="w">    </span><span class="p">);</span>
+</span><span data-line="21"><span class="p">}</span>
+</span><span data-line="22">
+</span><span data-line="23"><span class="cm">/**</span>
+</span><span data-line="24"><span class="cm"> * 差速驅動</span>
+</span><span data-line="25"><span class="cm"> * @param throttle 前進速度</span>
+</span><span data-line="26"><span class="cm"> * @param turn 轉向速度</span>
+</span><span data-line="27"><span class="cm"> * @return Command 差速驅動指令</span>
+</span><span data-line="28"><span class="cm"> */</span>
+</span><span data-line="29"><span class="kd">public</span><span class="w"> </span><span class="n">Command</span><span class="w"> </span><span class="nf">drive</span><span class="p">(</span><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">throttle</span><span class="p">,</span><span class="w"> </span><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">turn</span><span class="p">){</span>
+</span><span data-line="30"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">run</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">//他會執行到被打斷或是外加的.until()條件成立為止</span>
+</span><span data-line="31"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">leftSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">throttle</span><span class="p">.</span><span class="na">get</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">turn</span><span class="p">.</span><span class="na">get</span><span class="p">();</span><span class="w"> </span><span class="c1">//左輪速度=前進速度+轉向速度</span>
+</span><span data-line="32"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">rightSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">throttle</span><span class="p">.</span><span class="na">get</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">turn</span><span class="p">.</span><span class="na">get</span><span class="p">();</span><span class="w"> </span><span class="c1">//右輪速度=前進速度-轉向速度</span>
+</span><span data-line="33"><span class="w">        </span><span class="n">drive</span><span class="p">(</span><span class="n">leftSpeed</span><span class="p">,</span><span class="w"> </span><span class="n">rightSpeed</span><span class="p">);</span><span class="w"> </span><span class="c1">//驅動馬達</span>
+</span><span data-line="34"><span class="w">    </span><span class="p">});</span>
+</span><span data-line="35">
+</span><span data-line="36"><span class="p">}</span>
+</span><span data-line="37">
+</span><span data-line="38"><span class="cm">/**</span>
+</span><span data-line="39"><span class="cm"> * 驅動馬達</span>
+</span><span data-line="40"><span class="cm"> * @param leftSpeed 左邊的速度</span>
+</span><span data-line="41"><span class="cm"> * @param rightSpeed 右邊的速度</span>
+</span><span data-line="42"><span class="cm"> */</span>
+</span><span data-line="43"><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">drive</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">leftSpeed</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">rightSpeed</span><span class="p">){</span>
+</span><span data-line="44"><span class="w">    </span><span class="n">LeftMotor</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">leftSpeed</span><span class="o">/</span><span class="p">(</span><span class="mi">5676</span><span class="o">*</span><span class="n">Constants</span><span class="p">.</span><span class="na">DrivePositionConvertionFactor</span><span class="p">));</span><span class="w"> </span><span class="c1">//5676是無刷馬達的最大RPM</span>
+</span><span data-line="45"><span class="w">    </span><span class="n">RightMotor</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">rightSpeed</span><span class="o">/</span><span class="p">(</span><span class="mi">5676</span><span class="o">*</span><span class="n">Constants</span><span class="p">.</span><span class="na">DrivePositionConvertionFactor</span><span class="p">));</span><span class="w"> </span><span class="c1">//轉換成百分比</span>
+</span><span data-line="46"><span class="p">}</span>
+</span><span data-line="47">
+</span><span data-line="48"><span class="cm">/**</span>
+</span><span data-line="49"><span class="cm"> * 每個週期更新位置的東西</span>
+</span><span data-line="50"><span class="cm"> *</span>
+</span><span data-line="51"><span class="cm"> */</span>
+</span><span data-line="52"><span class="nd">@Override</span>
+</span><span data-line="53"><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">periodic</span><span class="p">(){</span>
+</span><span data-line="54"><span class="w">    </span><span class="n">PoseEstimator</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">gyro</span><span class="p">.</span><span class="na">getRotation2d</span><span class="p">(),</span><span class="w"> </span><span class="n">getPosition</span><span class="p">());</span><span class="w"> </span><span class="c1">//更新位置</span>
+</span><span data-line="55"><span class="p">}</span>
+</span></pre></div>
+</div>
+</div>
+</section>
+<section id="id6">
+<h2>小總結<a class="headerlink" href="#id6" title="連結到這個標頭">¶</a></h2>
+<p>在這邊，你學到了如何控制底盤的馬達</p>
+<p>完整的程式碼：</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Kraken X60 + Pigeon2</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">NEO + NavX(AHRS)</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">Kraken + NavX(AHRS)</button><button aria-controls="panel-0-0-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-3" name="0-3" role="tab" tabindex="-1">NEO + Pigeon2</button><button aria-controls="panel-0-0-4" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-4" name="0-4" role="tab" tabindex="-1">Timed Based(NEO+AHRS)</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DifferentialDrive</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SubsystemBase</span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">TalonFX</span><span class="w"> </span><span class="n">LeftMotor</span><span class="p">,</span><span class="w"> </span><span class="n">RightMotor</span><span class="p">;</span>
+</span><span data-line="3"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Pigeon2</span><span class="w"> </span><span class="n">gyroscope</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">TalonFXConfiguration</span><span class="w"> </span><span class="n">LeftConfig</span><span class="p">,</span><span class="w"> </span><span class="n">RightConfig</span><span class="p">;</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDriveKinematics</span><span class="w"> </span><span class="n">kinemtatics</span><span class="p">;</span>
+</span><span data-line="7"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDrivePoseEstimator</span><span class="w"> </span><span class="n">PoseEstimator</span><span class="p">;</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">DifferentialDrive</span><span class="p">(){</span>
+</span><span data-line="10"><span class="w">        </span><span class="n">LeftMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TalonFX</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span><span data-line="11"><span class="w">        </span><span class="n">RightMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TalonFX</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span>
+</span><span data-line="12"><span class="w">        </span><span class="n">gyroscope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Pigeon2</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="13">
+</span><span data-line="14"><span class="w">        </span><span class="n">kinemtatics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveKinematics</span><span class="p">(</span><span class="n">Centimeters</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">65</span><span class="p">));</span>
+</span><span data-line="15"><span class="w">        </span><span class="n">PoseEstimator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDrivePoseEstimator</span><span class="p">(</span>
+</span><span data-line="16"><span class="w">            </span><span class="n">kinemtatics</span><span class="p">,</span>
+</span><span data-line="17"><span class="w">            </span><span class="n">gyroscope</span><span class="p">.</span><span class="na">getRotation2d</span><span class="p">(),</span>
+</span><span data-line="18"><span class="w">            </span><span class="n">getPosition</span><span class="p">().</span><span class="na">leftMeters</span><span class="p">,</span>
+</span><span data-line="19"><span class="w">            </span><span class="n">getPosition</span><span class="p">().</span><span class="na">rightMeters</span><span class="p">,</span>
+</span><span data-line="20"><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">Pose2d</span><span class="p">());</span>
+</span><span data-line="21">
+</span><span data-line="22"><span class="w">        </span><span class="n">LeftConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TalonFXConfiguration</span><span class="p">();</span><span class="w"> </span><span class="c1">//在這邊就會用出廠設定了</span>
+</span><span data-line="23"><span class="w">        </span><span class="n">RightConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TalonFXConfiguration</span><span class="p">();</span>
+</span><span data-line="24">
+</span><span data-line="25"><span class="w">        </span><span class="n">LeftConfig</span><span class="p">.</span><span class="na">MotorOutput</span>
+</span><span data-line="26"><span class="w">            </span><span class="p">.</span><span class="na">withNeutralMode</span><span class="p">(</span><span class="n">NeutralModeValue</span><span class="p">.</span><span class="na">Brake</span><span class="p">)</span><span class="w"> </span><span class="c1">//設定空轉模式, Brake為煞車模式, Coast為滑行模式</span>
+</span><span data-line="27"><span class="w">            </span><span class="p">.</span><span class="na">withInverted</span><span class="p">(</span><span class="n">InvertedValue</span><span class="p">.</span><span class="na">CounterClockwise_Positive</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定馬達反轉方向</span>
+</span><span data-line="28"><span class="w">        </span><span class="n">LeftConfig</span><span class="p">.</span><span class="na">Feedback</span>
+</span><span data-line="29"><span class="w">            </span><span class="p">.</span><span class="na">withSensorToMechanismRatio</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DriveGearRatio</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定編碼器轉換比例(這邊不能直接換成車輪的轉換比例, 要用馬達的齒輪比)</span>
+</span><span data-line="30">
+</span><span data-line="31">
+</span><span data-line="32"><span class="w">        </span><span class="n">RightConfig</span><span class="p">.</span><span class="na">MotorOutput</span>
+</span><span data-line="33"><span class="w">            </span><span class="p">.</span><span class="na">withNeutralMode</span><span class="p">(</span><span class="n">NeutralModeValue</span><span class="p">.</span><span class="na">Brake</span><span class="p">)</span><span class="w"> </span><span class="c1">//設定空轉模式, Brake為煞車模式, Coast為滑行模式</span>
+</span><span data-line="34"><span class="w">            </span><span class="p">.</span><span class="na">withInverted</span><span class="p">(</span><span class="n">InvertedValue</span><span class="p">.</span><span class="na">CounterClockwise_Positive</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定馬達反轉方向</span>
+</span><span data-line="35"><span class="w">        </span><span class="n">RightConfig</span><span class="p">.</span><span class="na">Feedback</span>
+</span><span data-line="36"><span class="w">            </span><span class="p">.</span><span class="na">withSensorToMechanismRatio</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DriveGearRatio</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定編碼器轉換比例(這邊不能直接換成車輪的轉換比例, 要用馬達的齒輪比)</span>
+</span><span data-line="37">
+</span><span data-line="38"><span class="w">        </span><span class="n">LeftMotor</span><span class="p">.</span><span class="na">getConfigurator</span><span class="p">().</span><span class="na">apply</span><span class="p">(</span><span class="n">LeftConfig</span><span class="p">);</span>
+</span><span data-line="39"><span class="w">        </span><span class="n">RightMotor</span><span class="p">.</span><span class="na">getConfigurator</span><span class="p">().</span><span class="na">apply</span><span class="p">(</span><span class="n">RightConfig</span><span class="p">);</span>
+</span><span data-line="40"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="41">
+</span><span data-line="42"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDriveWheelPositions</span><span class="w"> </span><span class="nf">getPosition</span><span class="p">(){</span>
+</span><span data-line="43"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveWheelPositions</span><span class="p">(</span>
+</span><span data-line="44"><span class="w">            </span><span class="n">LeftMotor</span><span class="p">.</span><span class="na">getPosition</span><span class="p">().</span><span class="na">getValue</span><span class="p">().</span><span class="na">times</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">WheelCirc</span><span class="p">).</span><span class="na">in</span><span class="p">(</span><span class="n">MultUnit</span><span class="p">.</span><span class="na">combine</span><span class="p">(</span><span class="n">Rotations</span><span class="p">,</span><span class="w"> </span><span class="n">Meters</span><span class="p">)),</span><span class="w"> </span><span class="c1">//把馬達的旋轉轉換成車輪移動的距離</span>
+</span><span data-line="45"><span class="w">            </span><span class="n">LeftMotor</span><span class="p">.</span><span class="na">getPosition</span><span class="p">().</span><span class="na">getValue</span><span class="p">().</span><span class="na">times</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">WheelCirc</span><span class="p">).</span><span class="na">in</span><span class="p">(</span><span class="n">MultUnit</span><span class="p">.</span><span class="na">combine</span><span class="p">(</span><span class="n">Rotations</span><span class="p">,</span><span class="w"> </span><span class="n">Meters</span><span class="p">))</span>
+</span><span data-line="46"><span class="w">        </span><span class="p">);</span>
+</span><span data-line="47"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="48">
+</span><span data-line="49"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDriveWheelSpeeds</span><span class="w"> </span><span class="nf">getVelocity</span><span class="p">(){</span>
+</span><span data-line="50"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveWheelSpeeds</span><span class="p">(</span>
+</span><span data-line="51"><span class="w">            </span><span class="n">LeftMotor</span><span class="p">.</span><span class="na">getVelocity</span><span class="p">().</span><span class="na">getValue</span><span class="p">().</span><span class="na">times</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">WheelCirc</span><span class="p">).</span><span class="na">in</span><span class="p">(</span><span class="n">MultUnit</span><span class="p">.</span><span class="na">combine</span><span class="p">(</span><span class="n">RotationsPerSecond</span><span class="p">,</span><span class="w"> </span><span class="n">Meters</span><span class="p">)),</span><span class="w"> </span><span class="c1">//把馬達的旋轉速度轉換成車輪的線速度</span>
+</span><span data-line="52"><span class="w">            </span><span class="n">RightMotor</span><span class="p">.</span><span class="na">getVelocity</span><span class="p">().</span><span class="na">getValue</span><span class="p">().</span><span class="na">times</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">WheelCirc</span><span class="p">).</span><span class="na">in</span><span class="p">(</span><span class="n">MultUnit</span><span class="p">.</span><span class="na">combine</span><span class="p">(</span><span class="n">RotationsPerSecond</span><span class="p">,</span><span class="w"> </span><span class="n">Meters</span><span class="p">))</span>
+</span><span data-line="53"><span class="w">        </span><span class="p">);</span>
+</span><span data-line="54"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="55">
+</span><span data-line="56"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Command</span><span class="w"> </span><span class="nf">drive</span><span class="p">(</span><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ForwardMPS</span><span class="p">,</span><span class="w"> </span><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">RotationMPS</span><span class="p">){</span>
+</span><span data-line="57"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">run</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="58"><span class="w">            </span><span class="n">DifferentialDriveWheelSpeeds</span><span class="w"> </span><span class="n">speeds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveWheelSpeeds</span><span class="p">(</span><span class="n">ForwardMPS</span><span class="p">.</span><span class="na">get</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RotationMPS</span><span class="p">.</span><span class="na">get</span><span class="p">(),</span><span class="w"> </span><span class="n">ForwardMPS</span><span class="p">.</span><span class="na">get</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">RotationMPS</span><span class="p">.</span><span class="na">get</span><span class="p">());</span><span class="w"> </span><span class="c1">//計算左右輪速度</span>
+</span><span data-line="59"><span class="w">            </span><span class="n">speeds</span><span class="p">.</span><span class="na">desaturate</span><span class="p">(</span><span class="mi">6000</span><span class="o">*</span><span class="n">Constants</span><span class="p">.</span><span class="na">DriveVelocityConvertionFactor</span><span class="p">);</span><span class="w"> </span><span class="c1">//限制最大速度</span>
+</span><span data-line="60"><span class="w">            </span><span class="n">drive</span><span class="p">(</span><span class="n">speeds</span><span class="p">.</span><span class="na">leftMetersPerSecond</span><span class="p">,</span><span class="w"> </span><span class="n">speeds</span><span class="p">.</span><span class="na">rightMetersPerSecond</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定馬達速度</span>
+</span><span data-line="61"><span class="w">        </span><span class="p">});</span>
+</span><span data-line="62">
+</span><span data-line="63"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="64">
+</span><span data-line="65"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">drive</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">leftSpeed</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">rightSpeed</span><span class="p">){</span>
+</span><span data-line="66"><span class="w">        </span><span class="n">LeftMotor</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">leftSpeed</span><span class="o">/</span><span class="p">(</span><span class="mi">6000</span><span class="o">*</span><span class="n">Constants</span><span class="p">.</span><span class="na">DrivePositionConvertionFactor</span><span class="p">));</span>
+</span><span data-line="67"><span class="w">        </span><span class="n">RightMotor</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">leftSpeed</span><span class="o">/</span><span class="p">(</span><span class="mi">6000</span><span class="o">*</span><span class="n">Constants</span><span class="p">.</span><span class="na">DrivePositionConvertionFactor</span><span class="p">));</span>
+</span><span data-line="68"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="69">
+</span><span data-line="70"><span class="w">    </span><span class="nd">@Override</span>
+</span><span data-line="71"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">periodic</span><span class="p">(){</span>
+</span><span data-line="72"><span class="w">        </span><span class="n">PoseEstimator</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">gyroscope</span><span class="p">.</span><span class="na">getRotation2d</span><span class="p">(),</span><span class="w"> </span><span class="n">getPosition</span><span class="p">());</span>
+</span><span data-line="73"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="74"><span class="p">}</span>
+</span></pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DifferentialDrive</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SubsystemBase</span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">SparkMax</span><span class="w"> </span><span class="n">LeftMotor</span><span class="p">,</span><span class="w"> </span><span class="n">RightMotor</span><span class="p">;</span>
+</span><span data-line="3"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">RelativeEncoder</span><span class="w"> </span><span class="n">LeftEncoder</span><span class="p">,</span><span class="w"> </span><span class="n">RightEncoder</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">AHRS</span><span class="w"> </span><span class="n">gyroscope</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">SparkMaxConfig</span><span class="w"> </span><span class="n">LeftConfig</span><span class="p">,</span><span class="w"> </span><span class="n">RightConfig</span><span class="p">;</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDriveKinematics</span><span class="w"> </span><span class="n">kinemtatics</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDrivePoseEstimator</span><span class="w"> </span><span class="n">PoseEstimator</span><span class="p">;</span>
+</span><span data-line="9">
+</span><span data-line="10"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">DifferentialDrive</span><span class="p">(){</span>
+</span><span data-line="11"><span class="w">        </span><span class="n">LeftMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparkMax</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">MotorType</span><span class="p">.</span><span class="na">kBrushless</span><span class="p">);</span>
+</span><span data-line="12"><span class="w">        </span><span class="n">RightMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparkMax</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="n">MotorType</span><span class="p">.</span><span class="na">kBrushless</span><span class="p">);</span>
+</span><span data-line="13"><span class="w">        </span><span class="n">gyroscope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AHRS</span><span class="p">(</span><span class="n">NavXComType</span><span class="p">.</span><span class="na">kMXP_SPI</span><span class="p">);</span>
+</span><span data-line="14">
+</span><span data-line="15"><span class="w">        </span><span class="n">kinemtatics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveKinematics</span><span class="p">(</span><span class="n">Centimeters</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">65</span><span class="p">));</span>
+</span><span data-line="16"><span class="w">        </span><span class="n">PoseEstimator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDrivePoseEstimator</span><span class="p">(</span>
+</span><span data-line="17"><span class="w">            </span><span class="n">kinemtatics</span><span class="p">,</span>
+</span><span data-line="18"><span class="w">            </span><span class="n">gyroscope</span><span class="p">.</span><span class="na">getRotation2d</span><span class="p">(),</span>
+</span><span data-line="19"><span class="w">            </span><span class="n">getPosition</span><span class="p">().</span><span class="na">leftMeters</span><span class="p">,</span>
+</span><span data-line="20"><span class="w">            </span><span class="n">getPosition</span><span class="p">().</span><span class="na">rightMeters</span><span class="p">,</span>
+</span><span data-line="21"><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">Pose2d</span><span class="p">());</span>
+</span><span data-line="22">
+</span><span data-line="23"><span class="w">        </span><span class="n">LeftConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparkMaxConfig</span><span class="p">();</span>
+</span><span data-line="24"><span class="w">        </span><span class="n">RightConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparkMaxConfig</span><span class="p">();</span>
+</span><span data-line="25">
+</span><span data-line="26"><span class="w">        </span><span class="n">LeftConfig</span>
+</span><span data-line="27"><span class="w">            </span><span class="p">.</span><span class="na">idleMode</span><span class="p">(</span><span class="n">IdleMode</span><span class="p">.</span><span class="na">kBrake</span><span class="p">)</span>
+</span><span data-line="28"><span class="w">            </span><span class="p">.</span><span class="na">inverted</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+</span><span data-line="29"><span class="w">            </span><span class="p">.</span><span class="na">voltageCompensation</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="c1">//啟用電壓補償, 參數為標準電壓</span>
+</span><span data-line="30"><span class="w">            </span><span class="p">.</span><span class="na">smartCurrentLimit</span><span class="p">(</span><span class="mi">40</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定馬達電流限制(為滑動前能承受的最大電流(SlipCurrent))</span>
+</span><span data-line="31"><span class="w">        </span><span class="n">LeftConfig</span><span class="p">.</span><span class="na">encoder</span>
+</span><span data-line="32"><span class="w">            </span><span class="p">.</span><span class="na">positionConversionFactor</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DrivePositionConvertionFactor</span><span class="p">)</span><span class="w"> </span><span class="c1">//設定編碼器位置轉換比例</span>
+</span><span data-line="33"><span class="w">            </span><span class="p">.</span><span class="na">velocityConversionFactor</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DriveVelocityConvertionFactor</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定編碼器速度轉換比例</span>
+</span><span data-line="34">
+</span><span data-line="35">
+</span><span data-line="36"><span class="w">        </span><span class="n">RightConfig</span>
+</span><span data-line="37"><span class="w">            </span><span class="p">.</span><span class="na">idleMode</span><span class="p">(</span><span class="n">IdleMode</span><span class="p">.</span><span class="na">kBrake</span><span class="p">)</span>
+</span><span data-line="38"><span class="w">            </span><span class="p">.</span><span class="na">inverted</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+</span><span data-line="39"><span class="w">            </span><span class="p">.</span><span class="na">voltageCompensation</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="c1">//啟用電壓補償, 參數為標準電壓</span>
+</span><span data-line="40"><span class="w">            </span><span class="p">.</span><span class="na">smartCurrentLimit</span><span class="p">(</span><span class="mi">40</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定馬達電流限制(為滑動前能承受的最大電流(SlipCurrent))</span>
+</span><span data-line="41"><span class="w">        </span><span class="n">RightConfig</span><span class="p">.</span><span class="na">encoder</span>
+</span><span data-line="42"><span class="w">            </span><span class="p">.</span><span class="na">positionConversionFactor</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DrivePositionConvertionFactor</span><span class="p">)</span><span class="w"> </span><span class="c1">//設定編碼器位置轉換比例</span>
+</span><span data-line="43"><span class="w">            </span><span class="p">.</span><span class="na">velocityConversionFactor</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DriveVelocityConvertionFactor</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定編碼器速度轉換比例</span>
+</span><span data-line="44">
+</span><span data-line="45"><span class="w">        </span><span class="n">LeftMotor</span><span class="p">.</span><span class="na">configure</span><span class="p">(</span><span class="n">LeftConfig</span><span class="p">,</span><span class="w"> </span><span class="n">ResetMode</span><span class="p">.</span><span class="na">kResetSafeParameters</span><span class="p">,</span><span class="w"> </span><span class="n">PersistMode</span><span class="p">.</span><span class="na">kPersistParameters</span><span class="p">);</span>
+</span><span data-line="46"><span class="w">        </span><span class="n">RightMotor</span><span class="p">.</span><span class="na">configure</span><span class="p">(</span><span class="n">RightConfig</span><span class="p">,</span><span class="w"> </span><span class="n">ResetMode</span><span class="p">.</span><span class="na">kResetSafeParameters</span><span class="p">,</span><span class="w"> </span><span class="n">PersistMode</span><span class="p">.</span><span class="na">kPersistParameters</span><span class="p">);</span>
+</span><span data-line="47"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="48">
+</span><span data-line="49"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDriveWheelPositions</span><span class="w"> </span><span class="nf">getPosition</span><span class="p">(){</span>
+</span><span data-line="50"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveWheelPositions</span><span class="p">(</span>
+</span><span data-line="51"><span class="w">            </span><span class="n">LeftEncoder</span><span class="p">.</span><span class="na">getPosition</span><span class="p">(),</span>
+</span><span data-line="52"><span class="w">            </span><span class="n">RightEncoder</span><span class="p">.</span><span class="na">getPosition</span><span class="p">()</span>
+</span><span data-line="53"><span class="w">        </span><span class="p">);</span>
+</span><span data-line="54"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="55">
+</span><span data-line="56"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDriveWheelSpeeds</span><span class="w"> </span><span class="nf">getVelocity</span><span class="p">(){</span>
+</span><span data-line="57"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveWheelSpeeds</span><span class="p">(</span>
+</span><span data-line="58"><span class="w">            </span><span class="n">LeftEncoder</span><span class="p">.</span><span class="na">getVelocity</span><span class="p">(),</span>
+</span><span data-line="59"><span class="w">            </span><span class="n">RightEncoder</span><span class="p">.</span><span class="na">getVelocity</span><span class="p">()</span>
+</span><span data-line="60"><span class="w">        </span><span class="p">);</span>
+</span><span data-line="61"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="62">
+</span><span data-line="63"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Command</span><span class="w"> </span><span class="nf">drive</span><span class="p">(</span><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ForwardMPS</span><span class="p">,</span><span class="w"> </span><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">RotationMPS</span><span class="p">){</span>
+</span><span data-line="64"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">run</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="65"><span class="w">            </span><span class="n">DifferentialDriveWheelSpeeds</span><span class="w"> </span><span class="n">speeds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveWheelSpeeds</span><span class="p">(</span><span class="n">ForwardMPS</span><span class="p">.</span><span class="na">get</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RotationMPS</span><span class="p">.</span><span class="na">get</span><span class="p">(),</span><span class="w"> </span><span class="n">ForwardMPS</span><span class="p">.</span><span class="na">get</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">RotationMPS</span><span class="p">.</span><span class="na">get</span><span class="p">());</span><span class="w"> </span><span class="c1">//計算左右輪速度</span>
+</span><span data-line="66"><span class="w">            </span><span class="n">speeds</span><span class="p">.</span><span class="na">desaturate</span><span class="p">(</span><span class="mi">6000</span><span class="o">*</span><span class="n">Constants</span><span class="p">.</span><span class="na">DriveVelocityConvertionFactor</span><span class="p">);</span><span class="w"> </span><span class="c1">//限制最大速度</span>
+</span><span data-line="67"><span class="w">            </span><span class="n">drive</span><span class="p">(</span><span class="n">speeds</span><span class="p">.</span><span class="na">leftMetersPerSecond</span><span class="p">,</span><span class="w"> </span><span class="n">speeds</span><span class="p">.</span><span class="na">rightMetersPerSecond</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定馬達速度</span>
+</span><span data-line="68"><span class="w">        </span><span class="p">});</span>
+</span><span data-line="69">
+</span><span data-line="70"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="71">
+</span><span data-line="72"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">drive</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">leftSpeed</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">rightSpeed</span><span class="p">){</span>
+</span><span data-line="73"><span class="w">        </span><span class="n">LeftMotor</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">leftSpeed</span><span class="o">/</span><span class="p">(</span><span class="mi">6000</span><span class="o">*</span><span class="n">Constants</span><span class="p">.</span><span class="na">DrivePositionConvertionFactor</span><span class="p">));</span>
+</span><span data-line="74"><span class="w">        </span><span class="n">RightMotor</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">leftSpeed</span><span class="o">/</span><span class="p">(</span><span class="mi">6000</span><span class="o">*</span><span class="n">Constants</span><span class="p">.</span><span class="na">DrivePositionConvertionFactor</span><span class="p">));</span>
+</span><span data-line="75"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="76">
+</span><span data-line="77"><span class="w">    </span><span class="nd">@Override</span>
+</span><span data-line="78"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">periodic</span><span class="p">(){</span>
+</span><span data-line="79"><span class="w">        </span><span class="n">PoseEstimator</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">gyroscope</span><span class="p">.</span><span class="na">getRotation2d</span><span class="p">(),</span><span class="w"> </span><span class="n">getPosition</span><span class="p">());</span>
+</span><span data-line="80"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="81"><span class="p">}</span>
+</span></pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DifferentialDrive</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SubsystemBase</span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">TalonFX</span><span class="w"> </span><span class="n">LeftMotor</span><span class="p">,</span><span class="w"> </span><span class="n">RightMotor</span><span class="p">;</span>
+</span><span data-line="3"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">AHRS</span><span class="w"> </span><span class="n">gyroscope</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">TalonFXConfiguration</span><span class="w"> </span><span class="n">LeftConfig</span><span class="p">,</span><span class="w"> </span><span class="n">RightConfig</span><span class="p">;</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDriveKinematics</span><span class="w"> </span><span class="n">kinemtatics</span><span class="p">;</span>
+</span><span data-line="7"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDrivePoseEstimator</span><span class="w"> </span><span class="n">PoseEstimator</span><span class="p">;</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">DifferentialDrive</span><span class="p">(){</span>
+</span><span data-line="10"><span class="w">        </span><span class="n">LeftMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TalonFX</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span><span data-line="11"><span class="w">        </span><span class="n">RightMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TalonFX</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span>
+</span><span data-line="12"><span class="w">        </span><span class="n">gyroscope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AHRS</span><span class="p">(</span><span class="n">NavXComType</span><span class="p">.</span><span class="na">kMXP_SPI</span><span class="p">);</span>
+</span><span data-line="13">
+</span><span data-line="14"><span class="w">        </span><span class="n">kinemtatics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveKinematics</span><span class="p">(</span><span class="n">Centimeters</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">65</span><span class="p">));</span>
+</span><span data-line="15"><span class="w">        </span><span class="n">PoseEstimator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDrivePoseEstimator</span><span class="p">(</span>
+</span><span data-line="16"><span class="w">            </span><span class="n">kinemtatics</span><span class="p">,</span>
+</span><span data-line="17"><span class="w">            </span><span class="n">gyroscope</span><span class="p">.</span><span class="na">getRotation2d</span><span class="p">(),</span>
+</span><span data-line="18"><span class="w">            </span><span class="n">getPosition</span><span class="p">().</span><span class="na">leftMeters</span><span class="p">,</span>
+</span><span data-line="19"><span class="w">            </span><span class="n">getPosition</span><span class="p">().</span><span class="na">rightMeters</span><span class="p">,</span>
+</span><span data-line="20"><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">Pose2d</span><span class="p">());</span>
+</span><span data-line="21">
+</span><span data-line="22"><span class="w">        </span><span class="n">LeftConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TalonFXConfiguration</span><span class="p">();</span><span class="w"> </span><span class="c1">//在這邊就會用出廠設定了</span>
+</span><span data-line="23"><span class="w">        </span><span class="n">RightConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TalonFXConfiguration</span><span class="p">();</span>
+</span><span data-line="24">
+</span><span data-line="25"><span class="w">        </span><span class="n">LeftConfig</span><span class="p">.</span><span class="na">MotorOutput</span>
+</span><span data-line="26"><span class="w">            </span><span class="p">.</span><span class="na">withNeutralMode</span><span class="p">(</span><span class="n">NeutralModeValue</span><span class="p">.</span><span class="na">Brake</span><span class="p">)</span><span class="w"> </span><span class="c1">//設定空轉模式, Brake為煞車模式, Coast為滑行模式</span>
+</span><span data-line="27"><span class="w">            </span><span class="p">.</span><span class="na">withInverted</span><span class="p">(</span><span class="n">InvertedValue</span><span class="p">.</span><span class="na">CounterClockwise_Positive</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定馬達反轉方向</span>
+</span><span data-line="28"><span class="w">        </span><span class="n">LeftConfig</span><span class="p">.</span><span class="na">Feedback</span>
+</span><span data-line="29"><span class="w">            </span><span class="p">.</span><span class="na">withSensorToMechanismRatio</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DriveGearRatio</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定編碼器轉換比例(這邊不能直接換成車輪的轉換比例, 要用馬達的齒輪比)</span>
+</span><span data-line="30">
+</span><span data-line="31">
+</span><span data-line="32"><span class="w">        </span><span class="n">RightConfig</span><span class="p">.</span><span class="na">MotorOutput</span>
+</span><span data-line="33"><span class="w">            </span><span class="p">.</span><span class="na">withNeutralMode</span><span class="p">(</span><span class="n">NeutralModeValue</span><span class="p">.</span><span class="na">Brake</span><span class="p">)</span><span class="w"> </span><span class="c1">//設定空轉模式, Brake為煞車模式, Coast為滑行模式</span>
+</span><span data-line="34"><span class="w">            </span><span class="p">.</span><span class="na">withInverted</span><span class="p">(</span><span class="n">InvertedValue</span><span class="p">.</span><span class="na">CounterClockwise_Positive</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定馬達反轉方向</span>
+</span><span data-line="35"><span class="w">        </span><span class="n">RightConfig</span><span class="p">.</span><span class="na">Feedback</span>
+</span><span data-line="36"><span class="w">            </span><span class="p">.</span><span class="na">withSensorToMechanismRatio</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DriveGearRatio</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定編碼器轉換比例(這邊不能直接換成車輪的轉換比例, 要用馬達的齒輪比)</span>
+</span><span data-line="37">
+</span><span data-line="38"><span class="w">        </span><span class="n">LeftMotor</span><span class="p">.</span><span class="na">getConfigurator</span><span class="p">().</span><span class="na">apply</span><span class="p">(</span><span class="n">LeftConfig</span><span class="p">);</span>
+</span><span data-line="39"><span class="w">        </span><span class="n">RightMotor</span><span class="p">.</span><span class="na">getConfigurator</span><span class="p">().</span><span class="na">apply</span><span class="p">(</span><span class="n">RightConfig</span><span class="p">);</span>
+</span><span data-line="40"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="41">
+</span><span data-line="42"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDriveWheelPositions</span><span class="w"> </span><span class="nf">getPosition</span><span class="p">(){</span>
+</span><span data-line="43"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveWheelPositions</span><span class="p">(</span>
+</span><span data-line="44"><span class="w">            </span><span class="n">LeftMotor</span><span class="p">.</span><span class="na">getPosition</span><span class="p">().</span><span class="na">getValue</span><span class="p">().</span><span class="na">times</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">WheelCirc</span><span class="p">).</span><span class="na">in</span><span class="p">(</span><span class="n">MultUnit</span><span class="p">.</span><span class="na">combine</span><span class="p">(</span><span class="n">Rotations</span><span class="p">,</span><span class="w"> </span><span class="n">Meters</span><span class="p">)),</span><span class="w"> </span><span class="c1">//把馬達的旋轉轉換成車輪移動的距離</span>
+</span><span data-line="45"><span class="w">            </span><span class="n">LeftMotor</span><span class="p">.</span><span class="na">getPosition</span><span class="p">().</span><span class="na">getValue</span><span class="p">().</span><span class="na">times</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">WheelCirc</span><span class="p">).</span><span class="na">in</span><span class="p">(</span><span class="n">MultUnit</span><span class="p">.</span><span class="na">combine</span><span class="p">(</span><span class="n">Rotations</span><span class="p">,</span><span class="w"> </span><span class="n">Meters</span><span class="p">))</span>
+</span><span data-line="46"><span class="w">        </span><span class="p">);</span>
+</span><span data-line="47"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="48">
+</span><span data-line="49"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDriveWheelSpeeds</span><span class="w"> </span><span class="nf">getVelocity</span><span class="p">(){</span>
+</span><span data-line="50"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveWheelSpeeds</span><span class="p">(</span>
+</span><span data-line="51"><span class="w">            </span><span class="n">LeftMotor</span><span class="p">.</span><span class="na">getVelocity</span><span class="p">().</span><span class="na">getValue</span><span class="p">().</span><span class="na">times</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">WheelCirc</span><span class="p">).</span><span class="na">in</span><span class="p">(</span><span class="n">MultUnit</span><span class="p">.</span><span class="na">combine</span><span class="p">(</span><span class="n">RotationsPerSecond</span><span class="p">,</span><span class="w"> </span><span class="n">Meters</span><span class="p">)),</span><span class="w"> </span><span class="c1">//把馬達的旋轉速度轉換成車輪的線速度</span>
+</span><span data-line="52"><span class="w">            </span><span class="n">RightMotor</span><span class="p">.</span><span class="na">getVelocity</span><span class="p">().</span><span class="na">getValue</span><span class="p">().</span><span class="na">times</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">WheelCirc</span><span class="p">).</span><span class="na">in</span><span class="p">(</span><span class="n">MultUnit</span><span class="p">.</span><span class="na">combine</span><span class="p">(</span><span class="n">RotationsPerSecond</span><span class="p">,</span><span class="w"> </span><span class="n">Meters</span><span class="p">))</span>
+</span><span data-line="53"><span class="w">        </span><span class="p">);</span>
+</span><span data-line="54"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="55">
+</span><span data-line="56"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Command</span><span class="w"> </span><span class="nf">drive</span><span class="p">(</span><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ForwardMPS</span><span class="p">,</span><span class="w"> </span><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">RotationMPS</span><span class="p">){</span>
+</span><span data-line="57"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">run</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="58"><span class="w">            </span><span class="n">DifferentialDriveWheelSpeeds</span><span class="w"> </span><span class="n">speeds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveWheelSpeeds</span><span class="p">(</span><span class="n">ForwardMPS</span><span class="p">.</span><span class="na">get</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RotationMPS</span><span class="p">.</span><span class="na">get</span><span class="p">(),</span><span class="w"> </span><span class="n">ForwardMPS</span><span class="p">.</span><span class="na">get</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">RotationMPS</span><span class="p">.</span><span class="na">get</span><span class="p">());</span><span class="w"> </span><span class="c1">//計算左右輪速度</span>
+</span><span data-line="59"><span class="w">            </span><span class="n">speeds</span><span class="p">.</span><span class="na">desaturate</span><span class="p">(</span><span class="mi">6000</span><span class="o">*</span><span class="n">Constants</span><span class="p">.</span><span class="na">DriveVelocityConvertionFactor</span><span class="p">);</span><span class="w"> </span><span class="c1">//限制最大速度</span>
+</span><span data-line="60"><span class="w">            </span><span class="n">drive</span><span class="p">(</span><span class="n">speeds</span><span class="p">.</span><span class="na">leftMetersPerSecond</span><span class="p">,</span><span class="w"> </span><span class="n">speeds</span><span class="p">.</span><span class="na">rightMetersPerSecond</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定馬達速度</span>
+</span><span data-line="61"><span class="w">        </span><span class="p">});</span>
+</span><span data-line="62">
+</span><span data-line="63"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="64">
+</span><span data-line="65"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">drive</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">leftSpeed</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">rightSpeed</span><span class="p">){</span>
+</span><span data-line="66"><span class="w">        </span><span class="n">LeftMotor</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">leftSpeed</span><span class="o">/</span><span class="p">(</span><span class="mi">6000</span><span class="o">*</span><span class="n">Constants</span><span class="p">.</span><span class="na">DrivePositionConvertionFactor</span><span class="p">));</span>
+</span><span data-line="67"><span class="w">        </span><span class="n">RightMotor</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">leftSpeed</span><span class="o">/</span><span class="p">(</span><span class="mi">6000</span><span class="o">*</span><span class="n">Constants</span><span class="p">.</span><span class="na">DrivePositionConvertionFactor</span><span class="p">));</span>
+</span><span data-line="68"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="69">
+</span><span data-line="70"><span class="w">    </span><span class="nd">@Override</span>
+</span><span data-line="71"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">periodic</span><span class="p">(){</span>
+</span><span data-line="72"><span class="w">        </span><span class="n">PoseEstimator</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">gyroscope</span><span class="p">.</span><span class="na">getRotation2d</span><span class="p">(),</span><span class="w"> </span><span class="n">getPosition</span><span class="p">());</span>
+</span><span data-line="73"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="74"><span class="p">}</span>
+</span></pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-3" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-3" name="0-3" role="tabpanel" tabindex="0"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DifferentialDrive</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SubsystemBase</span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">SparkMax</span><span class="w"> </span><span class="n">LeftMotor</span><span class="p">,</span><span class="w"> </span><span class="n">RightMotor</span><span class="p">;</span>
+</span><span data-line="3"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">RelativeEncoder</span><span class="w"> </span><span class="n">LeftEncoder</span><span class="p">,</span><span class="w"> </span><span class="n">RightEncoder</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Pigeon2</span><span class="w"> </span><span class="n">gyroscope</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">SparkMaxConfig</span><span class="w"> </span><span class="n">LeftConfig</span><span class="p">,</span><span class="w"> </span><span class="n">RightConfig</span><span class="p">;</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDriveKinematics</span><span class="w"> </span><span class="n">kinemtatics</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDrivePoseEstimator</span><span class="w"> </span><span class="n">PoseEstimator</span><span class="p">;</span>
+</span><span data-line="9">
+</span><span data-line="10"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">DifferentialDrive</span><span class="p">(){</span>
+</span><span data-line="11"><span class="w">        </span><span class="n">LeftMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparkMax</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">MotorType</span><span class="p">.</span><span class="na">kBrushless</span><span class="p">);</span>
+</span><span data-line="12"><span class="w">        </span><span class="n">RightMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparkMax</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="n">MotorType</span><span class="p">.</span><span class="na">kBrushless</span><span class="p">);</span>
+</span><span data-line="13"><span class="w">        </span><span class="n">gyroscope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Pigeon2</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+</span><span data-line="14">
+</span><span data-line="15"><span class="w">        </span><span class="n">kinemtatics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveKinematics</span><span class="p">(</span><span class="n">Centimeters</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">65</span><span class="p">));</span>
+</span><span data-line="16"><span class="w">        </span><span class="n">PoseEstimator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDrivePoseEstimator</span><span class="p">(</span>
+</span><span data-line="17"><span class="w">            </span><span class="n">kinemtatics</span><span class="p">,</span>
+</span><span data-line="18"><span class="w">            </span><span class="n">gyroscope</span><span class="p">.</span><span class="na">getRotation2d</span><span class="p">(),</span>
+</span><span data-line="19"><span class="w">            </span><span class="n">getPosition</span><span class="p">().</span><span class="na">leftMeters</span><span class="p">,</span>
+</span><span data-line="20"><span class="w">            </span><span class="n">getPosition</span><span class="p">().</span><span class="na">rightMeters</span><span class="p">,</span>
+</span><span data-line="21"><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">Pose2d</span><span class="p">());</span>
+</span><span data-line="22">
+</span><span data-line="23"><span class="w">        </span><span class="n">LeftConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparkMaxConfig</span><span class="p">();</span>
+</span><span data-line="24"><span class="w">        </span><span class="n">RightConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparkMaxConfig</span><span class="p">();</span>
+</span><span data-line="25">
+</span><span data-line="26"><span class="w">        </span><span class="n">LeftConfig</span>
+</span><span data-line="27"><span class="w">            </span><span class="p">.</span><span class="na">idleMode</span><span class="p">(</span><span class="n">IdleMode</span><span class="p">.</span><span class="na">kBrake</span><span class="p">)</span>
+</span><span data-line="28"><span class="w">            </span><span class="p">.</span><span class="na">inverted</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+</span><span data-line="29"><span class="w">            </span><span class="p">.</span><span class="na">voltageCompensation</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="c1">//啟用電壓補償, 參數為標準電壓</span>
+</span><span data-line="30"><span class="w">            </span><span class="p">.</span><span class="na">smartCurrentLimit</span><span class="p">(</span><span class="mi">40</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定馬達電流限制(為滑動前能承受的最大電流(SlipCurrent))</span>
+</span><span data-line="31"><span class="w">        </span><span class="n">LeftConfig</span><span class="p">.</span><span class="na">encoder</span>
+</span><span data-line="32"><span class="w">            </span><span class="p">.</span><span class="na">positionConversionFactor</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DrivePositionConvertionFactor</span><span class="p">)</span><span class="w"> </span><span class="c1">//設定編碼器位置轉換比例</span>
+</span><span data-line="33"><span class="w">            </span><span class="p">.</span><span class="na">velocityConversionFactor</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DriveVelocityConvertionFactor</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定編碼器速度轉換比例</span>
+</span><span data-line="34">
+</span><span data-line="35">
+</span><span data-line="36"><span class="w">        </span><span class="n">RightConfig</span>
+</span><span data-line="37"><span class="w">            </span><span class="p">.</span><span class="na">idleMode</span><span class="p">(</span><span class="n">IdleMode</span><span class="p">.</span><span class="na">kBrake</span><span class="p">)</span>
+</span><span data-line="38"><span class="w">            </span><span class="p">.</span><span class="na">inverted</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+</span><span data-line="39"><span class="w">            </span><span class="p">.</span><span class="na">voltageCompensation</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="c1">//啟用電壓補償, 參數為標準電壓</span>
+</span><span data-line="40"><span class="w">            </span><span class="p">.</span><span class="na">smartCurrentLimit</span><span class="p">(</span><span class="mi">40</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定馬達電流限制(為滑動前能承受的最大電流(SlipCurrent))</span>
+</span><span data-line="41"><span class="w">        </span><span class="n">RightConfig</span><span class="p">.</span><span class="na">encoder</span>
+</span><span data-line="42"><span class="w">            </span><span class="p">.</span><span class="na">positionConversionFactor</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DrivePositionConvertionFactor</span><span class="p">)</span><span class="w"> </span><span class="c1">//設定編碼器位置轉換比例</span>
+</span><span data-line="43"><span class="w">            </span><span class="p">.</span><span class="na">velocityConversionFactor</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DriveVelocityConvertionFactor</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定編碼器速度轉換比例</span>
+</span><span data-line="44">
+</span><span data-line="45"><span class="w">        </span><span class="n">LeftMotor</span><span class="p">.</span><span class="na">configure</span><span class="p">(</span><span class="n">LeftConfig</span><span class="p">,</span><span class="w"> </span><span class="n">ResetMode</span><span class="p">.</span><span class="na">kResetSafeParameters</span><span class="p">,</span><span class="w"> </span><span class="n">PersistMode</span><span class="p">.</span><span class="na">kPersistParameters</span><span class="p">);</span>
+</span><span data-line="46"><span class="w">        </span><span class="n">RightMotor</span><span class="p">.</span><span class="na">configure</span><span class="p">(</span><span class="n">RightConfig</span><span class="p">,</span><span class="w"> </span><span class="n">ResetMode</span><span class="p">.</span><span class="na">kResetSafeParameters</span><span class="p">,</span><span class="w"> </span><span class="n">PersistMode</span><span class="p">.</span><span class="na">kPersistParameters</span><span class="p">);</span>
+</span><span data-line="47"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="48">
+</span><span data-line="49"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDriveWheelPositions</span><span class="w"> </span><span class="nf">getPosition</span><span class="p">(){</span>
+</span><span data-line="50"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveWheelPositions</span><span class="p">(</span>
+</span><span data-line="51"><span class="w">            </span><span class="n">LeftEncoder</span><span class="p">.</span><span class="na">getPosition</span><span class="p">(),</span>
+</span><span data-line="52"><span class="w">            </span><span class="n">RightEncoder</span><span class="p">.</span><span class="na">getPosition</span><span class="p">()</span>
+</span><span data-line="53"><span class="w">        </span><span class="p">);</span>
+</span><span data-line="54"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="55">
+</span><span data-line="56"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDriveWheelSpeeds</span><span class="w"> </span><span class="nf">getVelocity</span><span class="p">(){</span>
+</span><span data-line="57"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveWheelSpeeds</span><span class="p">(</span>
+</span><span data-line="58"><span class="w">            </span><span class="n">LeftEncoder</span><span class="p">.</span><span class="na">getVelocity</span><span class="p">(),</span>
+</span><span data-line="59"><span class="w">            </span><span class="n">RightEncoder</span><span class="p">.</span><span class="na">getVelocity</span><span class="p">()</span>
+</span><span data-line="60"><span class="w">        </span><span class="p">);</span>
+</span><span data-line="61"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="62">
+</span><span data-line="63"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Command</span><span class="w"> </span><span class="nf">drive</span><span class="p">(</span><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ForwardMPS</span><span class="p">,</span><span class="w"> </span><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">RotationMPS</span><span class="p">){</span>
+</span><span data-line="64"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">run</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="65"><span class="w">            </span><span class="n">DifferentialDriveWheelSpeeds</span><span class="w"> </span><span class="n">speeds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveWheelSpeeds</span><span class="p">(</span><span class="n">ForwardMPS</span><span class="p">.</span><span class="na">get</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RotationMPS</span><span class="p">.</span><span class="na">get</span><span class="p">(),</span><span class="w"> </span><span class="n">ForwardMPS</span><span class="p">.</span><span class="na">get</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">RotationMPS</span><span class="p">.</span><span class="na">get</span><span class="p">());</span><span class="w"> </span><span class="c1">//計算左右輪速度</span>
+</span><span data-line="66"><span class="w">            </span><span class="n">speeds</span><span class="p">.</span><span class="na">desaturate</span><span class="p">(</span><span class="mi">6000</span><span class="o">*</span><span class="n">Constants</span><span class="p">.</span><span class="na">DriveVelocityConvertionFactor</span><span class="p">);</span><span class="w"> </span><span class="c1">//限制最大速度</span>
+</span><span data-line="67"><span class="w">            </span><span class="n">drive</span><span class="p">(</span><span class="n">speeds</span><span class="p">.</span><span class="na">leftMetersPerSecond</span><span class="p">,</span><span class="w"> </span><span class="n">speeds</span><span class="p">.</span><span class="na">rightMetersPerSecond</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定馬達速度</span>
+</span><span data-line="68"><span class="w">        </span><span class="p">});</span>
+</span><span data-line="69">
+</span><span data-line="70"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="71">
+</span><span data-line="72"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">drive</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">leftSpeed</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">rightSpeed</span><span class="p">){</span>
+</span><span data-line="73"><span class="w">        </span><span class="n">LeftMotor</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">leftSpeed</span><span class="o">/</span><span class="p">(</span><span class="mi">6000</span><span class="o">*</span><span class="n">Constants</span><span class="p">.</span><span class="na">DrivePositionConvertionFactor</span><span class="p">));</span>
+</span><span data-line="74"><span class="w">        </span><span class="n">RightMotor</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">leftSpeed</span><span class="o">/</span><span class="p">(</span><span class="mi">6000</span><span class="o">*</span><span class="n">Constants</span><span class="p">.</span><span class="na">DrivePositionConvertionFactor</span><span class="p">));</span>
+</span><span data-line="75"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="76">
+</span><span data-line="77"><span class="w">    </span><span class="nd">@Override</span>
+</span><span data-line="78"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">periodic</span><span class="p">(){</span>
+</span><span data-line="79"><span class="w">        </span><span class="n">PoseEstimator</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">gyroscope</span><span class="p">.</span><span class="na">getRotation2d</span><span class="p">(),</span><span class="w"> </span><span class="n">getPosition</span><span class="p">());</span>
+</span><span data-line="80"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="81"><span class="p">}</span>
+</span></pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-4" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-4" name="0-4" role="tabpanel" tabindex="0"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Robot</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">TimedRobot</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DifferentialDrive</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SubsystemBase</span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">SparkMax</span><span class="w"> </span><span class="n">LeftMotor</span><span class="p">,</span><span class="w"> </span><span class="n">RightMotor</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">RelativeEncoder</span><span class="w"> </span><span class="n">LeftEncoder</span><span class="p">,</span><span class="w"> </span><span class="n">RightEncoder</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">AHRS</span><span class="w"> </span><span class="n">gyroscope</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">SparkMaxConfig</span><span class="w"> </span><span class="n">LeftConfig</span><span class="p">,</span><span class="w"> </span><span class="n">RightConfig</span><span class="p">;</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDriveKinematics</span><span class="w"> </span><span class="n">kinemtatics</span><span class="p">;</span>
+</span><span data-line="9"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDrivePoseEstimator</span><span class="w"> </span><span class="n">PoseEstimator</span><span class="p">;</span>
+</span><span data-line="10">
+</span><span data-line="11"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">XboxController</span><span class="w"> </span><span class="n">controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">XboxController</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="12">
+</span><span data-line="13"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Robot</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="14"><span class="w">           </span><span class="n">LeftMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparkMax</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">MotorType</span><span class="p">.</span><span class="na">kBrushless</span><span class="p">);</span>
+</span><span data-line="15"><span class="w">        </span><span class="n">RightMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparkMax</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="n">MotorType</span><span class="p">.</span><span class="na">kBrushless</span><span class="p">);</span>
+</span><span data-line="16"><span class="w">        </span><span class="n">gyroscope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AHRS</span><span class="p">(</span><span class="n">NavXComType</span><span class="p">.</span><span class="na">kMXP_SPI</span><span class="p">);</span>
+</span><span data-line="17">
+</span><span data-line="18"><span class="w">        </span><span class="n">kinemtatics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveKinematics</span><span class="p">(</span><span class="n">Centimeters</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">65</span><span class="p">));</span>
+</span><span data-line="19"><span class="w">        </span><span class="n">PoseEstimator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDrivePoseEstimator</span><span class="p">(</span>
+</span><span data-line="20"><span class="w">            </span><span class="n">kinemtatics</span><span class="p">,</span>
+</span><span data-line="21"><span class="w">            </span><span class="n">gyroscope</span><span class="p">.</span><span class="na">getRotation2d</span><span class="p">(),</span>
+</span><span data-line="22"><span class="w">            </span><span class="n">getPosition</span><span class="p">().</span><span class="na">leftMeters</span><span class="p">,</span>
+</span><span data-line="23"><span class="w">            </span><span class="n">getPosition</span><span class="p">().</span><span class="na">rightMeters</span><span class="p">,</span>
+</span><span data-line="24"><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">Pose2d</span><span class="p">());</span>
+</span><span data-line="25">
+</span><span data-line="26"><span class="w">        </span><span class="n">LeftConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparkMaxConfig</span><span class="p">();</span>
+</span><span data-line="27"><span class="w">        </span><span class="n">RightConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SparkMaxConfig</span><span class="p">();</span>
+</span><span data-line="28">
+</span><span data-line="29"><span class="w">        </span><span class="n">LeftConfig</span>
+</span><span data-line="30"><span class="w">            </span><span class="p">.</span><span class="na">idleMode</span><span class="p">(</span><span class="n">IdleMode</span><span class="p">.</span><span class="na">kBrake</span><span class="p">)</span>
+</span><span data-line="31"><span class="w">            </span><span class="p">.</span><span class="na">inverted</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+</span><span data-line="32"><span class="w">            </span><span class="p">.</span><span class="na">voltageCompensation</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="c1">//啟用電壓補償, 參數為標準電壓</span>
+</span><span data-line="33"><span class="w">            </span><span class="p">.</span><span class="na">smartCurrentLimit</span><span class="p">(</span><span class="mi">40</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定馬達電流限制(為滑動前能承受的最大電流(SlipCurrent))</span>
+</span><span data-line="34"><span class="w">        </span><span class="n">LeftConfig</span><span class="p">.</span><span class="na">encoder</span>
+</span><span data-line="35"><span class="w">            </span><span class="p">.</span><span class="na">positionConversionFactor</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DrivePositionConvertionFactor</span><span class="p">)</span><span class="w"> </span><span class="c1">//設定編碼器位置轉換比例</span>
+</span><span data-line="36"><span class="w">            </span><span class="p">.</span><span class="na">velocityConversionFactor</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DriveVelocityConvertionFactor</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定編碼器速度轉換比例</span>
+</span><span data-line="37">
+</span><span data-line="38">
+</span><span data-line="39"><span class="w">        </span><span class="n">RightConfig</span>
+</span><span data-line="40"><span class="w">            </span><span class="p">.</span><span class="na">idleMode</span><span class="p">(</span><span class="n">IdleMode</span><span class="p">.</span><span class="na">kBrake</span><span class="p">)</span>
+</span><span data-line="41"><span class="w">            </span><span class="p">.</span><span class="na">inverted</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+</span><span data-line="42"><span class="w">            </span><span class="p">.</span><span class="na">voltageCompensation</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="c1">//啟用電壓補償, 參數為標準電壓</span>
+</span><span data-line="43"><span class="w">            </span><span class="p">.</span><span class="na">smartCurrentLimit</span><span class="p">(</span><span class="mi">40</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定馬達電流限制(為滑動前能承受的最大電流(SlipCurrent))</span>
+</span><span data-line="44"><span class="w">        </span><span class="n">RightConfig</span><span class="p">.</span><span class="na">encoder</span>
+</span><span data-line="45"><span class="w">            </span><span class="p">.</span><span class="na">positionConversionFactor</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DrivePositionConvertionFactor</span><span class="p">)</span><span class="w"> </span><span class="c1">//設定編碼器位置轉換比例</span>
+</span><span data-line="46"><span class="w">            </span><span class="p">.</span><span class="na">velocityConversionFactor</span><span class="p">(</span><span class="n">Constants</span><span class="p">.</span><span class="na">DriveVelocityConvertionFactor</span><span class="p">);</span><span class="w"> </span><span class="c1">//設定編碼器速度轉換比例</span>
+</span><span data-line="47">
+</span><span data-line="48"><span class="w">        </span><span class="n">LeftMotor</span><span class="p">.</span><span class="na">configure</span><span class="p">(</span><span class="n">LeftConfig</span><span class="p">,</span><span class="w"> </span><span class="n">ResetMode</span><span class="p">.</span><span class="na">kResetSafeParameters</span><span class="p">,</span><span class="w"> </span><span class="n">PersistMode</span><span class="p">.</span><span class="na">kPersistParameters</span><span class="p">);</span>
+</span><span data-line="49"><span class="w">        </span><span class="n">RightMotor</span><span class="p">.</span><span class="na">configure</span><span class="p">(</span><span class="n">RightConfig</span><span class="p">,</span><span class="w"> </span><span class="n">ResetMode</span><span class="p">.</span><span class="na">kResetSafeParameters</span><span class="p">,</span><span class="w"> </span><span class="n">PersistMode</span><span class="p">.</span><span class="na">kPersistParameters</span><span class="p">);</span>
+</span><span data-line="50"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="51">
+</span><span data-line="52"><span class="w">    </span><span class="nd">@Override</span>
+</span><span data-line="53"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">robotPeriodic</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="54"><span class="w">        </span><span class="n">PoseEstimator</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">gyro</span><span class="p">.</span><span class="na">getRotation2d</span><span class="p">(),</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDriveWheelPositions</span><span class="p">(</span><span class="n">LeftEncoder</span><span class="p">.</span><span class="na">getPosition</span><span class="p">,</span><span class="w"> </span><span class="n">RightEncoder</span><span class="p">.</span><span class="na">getPosition</span><span class="p">));</span>
+</span><span data-line="55"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="56"><span class="w">    </span><span class="nd">@Override</span>
+</span><span data-line="57"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">teleopPeriodic</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="58"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">forward</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">controller</span><span class="p">.</span><span class="na">getLeftY</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">;</span>
+</span><span data-line="59"><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">controller</span><span class="p">.</span><span class="na">getLeftX</span><span class="p">();</span>
+</span><span data-line="60"><span class="w">        </span><span class="n">LeftMotor</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">forward</span><span class="o">+</span><span class="n">rotation</span><span class="p">);</span>
+</span><span data-line="61"><span class="w">        </span><span class="n">RightMotor</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">forward</span><span class="o">-</span><span class="n">rotation</span><span class="p">);</span>
+</span><span data-line="62"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="63"><span class="p">}</span>
+</span></pre></div>
+</div>
+</div></div>
+<p>Command Based看這邊，還要寫RobotContainer喔</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">RobotContainer</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DifferentialDrivetrain</span><span class="w"> </span><span class="n">drivetrain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DifferentialDrivetrain</span><span class="p">();</span>
+</span><span data-line="3"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">XoboxController</span><span class="w"> </span><span class="n">controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">XboxController</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">RobotContainer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="w">       </span><span class="n">drivetrain</span><span class="p">.</span><span class="na">setDefaultCommand</span><span class="p">(</span><span class="n">drivetrain</span><span class="p">.</span><span class="na">drive</span><span class="p">(</span>
+</span><span data-line="8"><span class="w">        </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">controller</span><span class="p">.</span><span class="na">getLeftY</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Constants</span><span class="p">.</span><span class="na">MaxVelocity</span><span class="p">,</span>
+</span><span data-line="9"><span class="w">        </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">controller</span><span class="p">.</span><span class="na">getLeftX</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Constants</span><span class="p">.</span><span class="na">MaxOmega</span>
+</span><span data-line="10"><span class="w">       </span><span class="p">))</span>
+</span><span data-line="11"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="12">
+</span><span data-line="13"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">configureBindings</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="14"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="15">
+</span><span data-line="16"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Command</span><span class="w"> </span><span class="nf">getAutonomousCommand</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="17"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Commands</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;No autonomous command configured&quot;</span><span class="p">);</span>
+</span><span data-line="18"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="19"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>回到頂部</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="index.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>上一頁</span><div class="title">基礎專案</div></div>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, Justmore5mins</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials"></div>
+    </div>
+  </div>
+</footer>
+      <script src="../_static/documentation_options.js?v=0d9984b1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/translations.js?v=cbf116e0"></script>
+      <script src="../_static/shibuya.js?v=c1cf1a6b"></script>
+      <script src="../_static/tabs.js?v=3030b3cb"></script></body>
+</html>

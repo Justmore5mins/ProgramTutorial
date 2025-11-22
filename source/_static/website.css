@@ -1,0 +1,30 @@
+/* The card uses Shibuya theme variables */
+.website-card {
+    background: var(--shibuya-surface);
+    border: 1px solid var(--shibuya-border);
+    color: var(--shibuya-on-surface);
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin: 8px 0;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.website-card:hover {
+    background: var(--shibuya-surface-hover, rgba(255,255,255,0.05));
+}
+
+.website-title {
+    color: var(--shibuya-on-surface);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.website-url {
+    color: var(--shibuya-on-surface-muted, #999);
+    font-size: 0.85rem;
+}
+
+.website-icon {
+    width: 20px;
+    height: 20px;
+}
