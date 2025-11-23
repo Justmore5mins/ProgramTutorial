@@ -114,10 +114,10 @@ COTS
 ++++
     Commercial off the shelf，翻譯成中文就是現成的東西，規則基本上比較危險的(例如馬達或需要過電的東西)規定一定要是現成的東西，還不能自己爆改(因為他們沒辦法確定爆改之後有沒有放定時炸彈在裡面)
 
-        .. admonition:: 冷知識
-            :class: note
+    .. admonition:: 冷知識
+        :class: note
 
-            根據 `這個貼文 <https://www.chiefdelphi.com/t/fun-weird-questions-is-this-legal-to-appear-on-the-robot/507667>`_ ，乖乖綁在機器上是合法的喔
+        根據 `這個貼文 <https://www.chiefdelphi.com/t/fun-weird-questions-is-this-legal-to-appear-on-the-robot/507667>`_ ，乖乖綁在機器上是合法的喔
 
 
 Chassis / Drivetrain
@@ -430,7 +430,7 @@ W
 
 WAGO
 ++++
-快速接線方式，比Anderson快但可能脫落。
+    快速接線方式，比Anderson快但可能脫落。
 
 WCP
 +++
