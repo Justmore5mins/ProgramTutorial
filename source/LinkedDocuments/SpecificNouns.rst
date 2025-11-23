@@ -106,6 +106,10 @@ CIM
 
         CIM馬達
 
+Command Based Programming
++++++++++++++++++++++++++
+    指令架構編程是把每個要做的事情打包成指令一次丟給子系統(subsystem)執行，相比於傳統的Timed Based，他對於整體程式的可讀性、可維護性與易預測性都會比較高，不過開發時間也會相對長一些
+
 COTS
 ++++
     Commercial off the shelf，翻譯成中文就是現成的東西，規則基本上比較危險的(例如馬達或需要過電的東西)規定一定要是現成的東西，還不能自己爆改(因為他們沒辦法確定爆改之後有沒有放定時炸彈在裡面)
@@ -394,6 +398,14 @@ Thrifty Bot / TTB
     做電梯連接跟telescope蠻有名的，最近有出相機跟進軍swerve市場。
 
     .. website:: https://www.thethriftybot.com
+
+Timed Based
++++++++++++
+
+    最簡單的程式架構，比較常拿來用在初期測試還有看東西有沒有壞掉。
+
+V
+-
 
 VH-109 / 小黑
 +++++++++++++
