@@ -2,7 +2,7 @@
 <html lang="zh-TW" data-accent-color="violet" data-content_root="../">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>專有名詞們 - FRC程式資料庫 說明文件</title><link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜尋" href="../search.html" /><link rel="prev" title="陀螺儀" href="gyroscope.html" /><script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>專有名詞們 - FRC程式資料庫 說明文件</title><link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜尋" href="../search.html" /><link rel="next" title="資料傳輸" href="DataTransport.html" /><link rel="prev" title="陀螺儀" href="gyroscope.html" /><script>
     function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
     setColorMode(localStorage._theme||"auto");
   </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=dcd234e3" />
@@ -71,6 +71,8 @@ data-aria-dark="切換到自動模式">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">被連結的文件</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="gyroscope.html">陀螺儀</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">專有名詞們</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DataTransport.html">資料傳輸</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ClosedLoop.html">閉環控制</a></li>
 </ul>
 </li>
 </ul>
@@ -84,7 +86,121 @@ data-aria-dark="切換到自動模式">
     <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
       <i class="i-lucide close"></i>
     </button>
-    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>該頁內容</h3><ul>
+<li><a class="reference internal" href="#a">A</a><ul>
+<li><a class="reference internal" href="#am">AM</a></li>
+<li><a class="reference internal" href="#apriltags">AprilTags</a></li>
+<li><a class="reference internal" href="#anderson">Anderson</a></li>
+<li><a class="reference internal" href="#auto-auton-autonomous">auto / auton / autonomous</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#b">B</a><ul>
+<li><a class="reference internal" href="#bom">BOM</a></li>
+<li><a class="reference internal" href="#brake-coast">Brake / Coast</a></li>
+<li><a class="reference internal" href="#behind-the-bumpers">Behind the Bumpers</a></li>
+<li><a class="reference internal" href="#brownout">Brownout</a></li>
+<li><a class="reference internal" href="#bumper">Bumper</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#c">C</a><ul>
+<li><a class="reference internal" href="#cad">CAD</a></li>
+<li><a class="reference internal" href="#cam">CAM</a></li>
+<li><a class="reference internal" href="#can">CAN</a></li>
+<li><a class="reference internal" href="#can-fd">CAN-FD</a></li>
+<li><a class="reference internal" href="#cd">CD</a></li>
+<li><a class="reference internal" href="#cim">CIM</a></li>
+<li><a class="reference internal" href="#cots">COTS</a></li>
+<li><a class="reference internal" href="#chassis-drivetrain">Chassis / Drivetrain</a></li>
+<li><a class="reference internal" href="#closed-open-loop">Closed / Open Loop</a></li>
+<li><a class="reference internal" href="#csa">CSA</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#d">D</a><ul>
+<li><a class="reference internal" href="#ds">DS</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#e">E</a><ul>
+<li><a class="reference internal" href="#e-stop-a-stop">E-stop / A-stop</a></li>
+<li><a class="reference internal" href="#elevator-arm-telescope">Elevator / Arm / Telescope</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#f">F</a><ul>
+<li><a class="reference internal" href="#fms">FMS</a></li>
+<li><a class="reference internal" href="#fta">FTA</a></li>
+<li><a class="reference internal" href="#fun-robotics-network">FUN Robotics Network</a></li>
+<li><a class="reference internal" href="#ff-feed-forward">FF / Feed Forward</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#i">I</a><ul>
+<li><a class="reference internal" href="#imu">IMU</a></li>
+<li><a class="reference internal" href="#intake">Intake</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#k">K</a><ul>
+<li><a class="reference internal" href="#kop-am14u-kitbot">KOP / AM14U / KitBot</a></li>
+<li><a class="reference internal" href="#kickoff-kickoof">Kickoff / Kickoof</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#l">L</a><ul>
+<li><a class="reference internal" href="#ll-limelight">LL / Limelight</a></li>
+<li><a class="reference internal" href="#lqr-model-based-control">LQR / Model Based Control</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#m">M</a><ul>
+<li><a class="reference internal" href="#moi">MOI</a></li>
+<li><a class="reference internal" href="#mxp">MXP</a></li>
+<li><a class="reference internal" href="#mecanum">Mecanum</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#n">N</a><ul>
+<li><a class="reference internal" href="#ni">Ni</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#p">P</a><ul>
+<li><a class="reference internal" href="#pcm">PCM</a></li>
+<li><a class="reference internal" href="#pdh-pdp">PDH / PDP</a></li>
+<li><a class="reference internal" href="#poe">PoE</a></li>
+<li><a class="reference internal" href="#photonvision-pv">PhotonVision / PV</a></li>
+<li><a class="reference internal" href="#pathplanner-pp">PathPlanner / PP</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#r">R</a><ul>
+<li><a class="reference internal" href="#rev">REV</a></li>
+<li><a class="reference internal" href="#ri-lri">RI / LRI</a></li>
+<li><a class="reference internal" href="#rsl">RSL</a></li>
+<li><a class="reference internal" href="#ri3d">Ri3D</a></li>
+<li><a class="reference internal" href="#rookie">rookie</a></li>
+<li><a class="reference internal" href="#robot-reveal">Robot Reveal</a></li>
+<li><a class="reference internal" href="#roborio">RoboRIO</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#s">S</a><ul>
+<li><a class="reference internal" href="#sku">SKU</a></li>
+<li><a class="reference internal" href="#swerve">Swerve</a></li>
+<li><a class="reference internal" href="#sds">SDS</a></li>
+<li><a class="reference internal" href="#systemcore">SystemCore</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#t">T</a><ul>
+<li><a class="reference internal" href="#tba">TBA</a></li>
+<li><a class="reference internal" href="#teleop">TeleOp</a></li>
+<li><a class="reference internal" href="#thrifty-bot-ttb">Thrifty Bot / TTB</a></li>
+<li><a class="reference internal" href="#vh-109">VH-109 / &#23567;&#40657;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#w">W</a><ul>
+<li><a class="reference internal" href="#wago">WAGO</a></li>
+<li><a class="reference internal" href="#wcp">WCP</a></li>
+<li><a class="reference internal" href="#wpilib">WPILib</a></li>
+<li><a class="reference internal" href="#vrm">VRM</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#y">Y</a><ul>
+<li><a class="reference internal" href="#yass">YASS</a></li>
+</ul>
+</li>
+</ul>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
   </aside>
   <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
   <main class="sy-main w-full max-sm:max-w-full print:pt-6">
@@ -119,6 +235,688 @@ data-aria-dark="切換到自動模式">
         <article class="yue" role="main">
           <section id="id1">
 <h1>專有名詞們<a class="headerlink" href="#id1" title="連結到這個標頭">¶</a></h1>
+<section id="a">
+<h2>A<a class="headerlink" href="#a" title="連結到這個標頭">¶</a></h2>
+<section id="am">
+<h3>AM<a class="headerlink" href="#am" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>AM是 <a class="reference external" href="https://andymark.com">AndyMark</a> 的簡稱，AndyMark是FRC物件提供的集大成，除了KOP(Kit of Part)底盤是他們做的以外，也有代賣其他提供商(例如WCP, CTRE)的東西，也因為這個特性，所以基本上只要不要太新或偏僻的東西都會有andymark的sku。</p>
+</div></blockquote>
+</section>
+<section id="apriltags">
+<h3>AprilTags<a class="headerlink" href="#apriltags" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>AprilTag是一種視覺辨識的目標，因為有事先規定大小跟位置，所以在相機 <a class="reference external" href="https://docs.photonvision.org/en/latest/docs/calibration/calibration.html">校正</a> 後，只要FPS不要太低(通常20~40+fps)就可以當作位置校正的來源。</p>
+<figure class="align-center" id="id7">
+<a class="reference internal image-reference" href="https://docs.photonvision.org/en/latest/_images/apriltag-coords.png"><img alt="https://docs.photonvision.org/en/latest/_images/apriltag-coords.png" src="https://docs.photonvision.org/en/latest/_images/apriltag-coords.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">⬆️ 可愛的AprilTag(?)</span><a class="headerlink" href="#id7" title="連結到這個圖片">¶</a></p>
+</figcaption>
+</figure>
+<div class="important admonition">
+<p class="admonition-title">熱知識</p>
+<p>FRC用的AprilTag類別(Family)是36h11。</p>
+</div>
+</div></blockquote>
+</section>
+<section id="anderson">
+<h3>Anderson<a class="headerlink" href="#anderson" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>電線連接方式，雖然比WAGO麻煩，但也不容易鬆脫。</p>
+</div></blockquote>
+</section>
+<section id="auto-auton-autonomous">
+<h3>auto / auton / autonomous<a class="headerlink" href="#auto-auton-autonomous" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>比賽前15秒的自動模式。操作手不能動，但DS仍可強制停止。</p>
+</div></blockquote>
+</section>
+</section>
+<section id="b">
+<h2>B<a class="headerlink" href="#b" title="連結到這個標頭">¶</a></h2>
+<section id="bom">
+<h3>BOM<a class="headerlink" href="#bom" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>Bill of Materials 材料表，通常CAD完成後一起輸出，用於採買與資源管理。</p>
+</div></blockquote>
+</section>
+<section id="brake-coast">
+<h3>Brake / Coast<a class="headerlink" href="#brake-coast" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>馬達模式。Brake：急停。Coast：自然停。底盤/電梯常用Brake，Shooter常用Coast。</p>
+</div></blockquote>
+</section>
+<section id="behind-the-bumpers">
+<h3>Behind the Bumpers<a class="headerlink" href="#behind-the-bumpers" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>由 FUN Robotics Network 拍攝的隊伍介紹影片（10–20分鐘）。</p>
+</div></blockquote>
+</section>
+<section id="brownout">
+<h3>Brownout<a class="headerlink" href="#brownout" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>電壓過低保護。</p>
+</div></blockquote>
+</section>
+<section id="bumper">
+<h3>Bumper<a class="headerlink" href="#bumper" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>機器保險桿，需要與聯盟顏色一致（紅/藍）。</p>
+</div></blockquote>
+</section>
+</section>
+<section id="c">
+<h2>C<a class="headerlink" href="#c" title="連結到這個標頭">¶</a></h2>
+<section id="cad">
+<h3>CAD<a class="headerlink" href="#cad" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>CAD(Computer Aided Design)為設計機構必備。常見軟體：OnShape、SolidWorks、Solid Edge。</p>
+</div></blockquote>
+</section>
+<section id="cam">
+<h3>CAM<a class="headerlink" href="#cam" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>CAM(Computer Aided Manufacturing)，將CAD輸出轉成CNC可讀代碼。</p>
+</div></blockquote>
+</section>
+<section id="can">
+<h3>CAN<a class="headerlink" href="#can" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>CAN(Controller Area Network bus, 控制器區域網路匯流排)是一種通訊協定，透過兩組線(H跟L)跟 <a class="reference external" href="https://yu-yue.medium.com/frc-can-bus-2dbffef338fe">菊花鏈</a> 可以便利的將所有需要控制與資料傳輸的東西都整合到一個通用的系統上，非常的方便。</p>
+</div></blockquote>
+</section>
+<section id="can-fd">
+<h3>CAN-FD<a class="headerlink" href="#can-fd" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>CAN-FD(Controller Area Network with Flexible Datarate, 有彈性資料率的控制器區域網路匯流排)，相比於一般的CAN系統，最大的好處是能承受更大的資料吞吐量跟提供更快的傳輸速度。在實際應用上比如能用高頻率里程計(High frequency odometry)跟更多的CAN裝置等等。</p>
+<p>有關他的詳細技術資料可以看</p>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://store.ctr-electronics.com/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://store.ctr-electronics.com/pages/can-fd?srsltid=AfmBOoqjem5EACaZ6MSkZlq_LfVHTh3sA1v2_DrQMAq-AeCSaLDeZxqL" target="_blank">CAN FD
+ &ndash; CTR Electronics</a>
+  </div>
+  <div class="website-url">https://store.ctr-electronics.com/pages/can-fd?srsltid=AfmBOoqjem5EACaZ6MSkZlq_LfVHTh3sA1v2_DrQMAq-AeCSaLDeZxqL</div>
+</div>
+    <div class="note admonition">
+<p class="admonition-title">冷知識</p>
+<p>因為CAN是CTRE跟Ni一起開發的，所以CTRE他們家跟FRC有關的電子產品10個有11個都是用CAN迴路走資料的。</p>
+</div>
+</div></blockquote>
+</section>
+<section id="cd">
+<h3>CD<a class="headerlink" href="#cd" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>Chief Delphi是受47隊啟發，FRC中最大的以社群為基礎的論壇，基本上各種問題與公告甚至是求神問卜都可以在上面問(誤)</p>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://www.chiefdelphi.com/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://www.chiefdelphi.com" target="_blank">Chief Delphi</a>
+  </div>
+  <div class="website-url">https://www.chiefdelphi.com</div>
+</div>
+    <div class="note admonition">
+<p class="admonition-title">冷知識</p>
+<p><a class="reference external" href="https://www.thebluealliance.com/team/47">Team 47</a> 在1996年創立，2009年就沒有消息了，阿們。</p>
+</div>
+</div></blockquote>
+</section>
+<section id="cim">
+<h3>CIM<a class="headerlink" href="#cim" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>最強有刷馬達。MiniCIM為其縮小版。</p>
+<figure class="align-center" id="id8">
+<a class="reference internal image-reference" href="https://andymark.com/cdn/shop/files/am-0255_1200x1200.jpg?v=1749948964"><img alt="https://andymark.com/cdn/shop/files/am-0255_1200x1200.jpg?v=1749948964" src="https://andymark.com/cdn/shop/files/am-0255_1200x1200.jpg?v=1749948964" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">CIM馬達</span><a class="headerlink" href="#id8" title="連結到這個圖片">¶</a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</section>
+<section id="cots">
+<h3>COTS<a class="headerlink" href="#cots" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>Commercial off the shelf，翻譯成中文就是現成的東西，規則基本上比較危險的(例如馬達或需要過電的東西)規定一定要是現成的東西，還不能自己爆改(因為他們沒辦法確定爆改之後有沒有放定時炸彈在裡面)</p>
+<blockquote>
+<div><div class="note admonition">
+<p class="admonition-title">冷知識</p>
+<p>根據 <a class="reference external" href="https://www.chiefdelphi.com/t/fun-weird-questions-is-this-legal-to-appear-on-the-robot/507667">這個貼文</a> ，乖乖綁在機器上是合法的喔</p>
+</div>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="chassis-drivetrain">
+<h3>Chassis / Drivetrain<a class="headerlink" href="#chassis-drivetrain" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>就是底盤，主要有分差速底盤(Differential Drive)、麥克納姆倫(Mecanum Drive)跟向量底盤(Swerve Drive)</p>
+</div></blockquote>
+</section>
+<section id="closed-open-loop">
+<h3>Closed / Open Loop<a class="headerlink" href="#closed-open-loop" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>閉環/開環控制是在速度與位置控制中是神聖而不可分割的一部分(?)。兩者最大的區別就是有沒有 <code class="docutils literal notranslate"><span class="pre">反饋</span></code> 。以自動灑水器的例子來說，一個開還控制器的自動灑水器管他有沒有颳風下雨嚼檳榔(?)，只要時間一到就噴，管他三七二十一，這樣的控制方法固然簡單，不過顯而易見的是很容易造成額外資源的浪費，以噴墨印表機來說，如果用開環的話，今天在印東西的時候如果有誤差(例如有人撞到列印機)，他的噴頭被撞飛了機器還沒發現，就有可能原本要印AprilTag結果變成4K高清Rickroll的照片了。</p>
+<a class="reference internal image-reference" href="https://i.ytimg.com/vi/pqFD6psRDm8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&amp;rs=AOn4CLDPTuWQtBi8vspc1rhoL8lNxgNmYA"><img alt="https://i.ytimg.com/vi/pqFD6psRDm8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&amp;rs=AOn4CLDPTuWQtBi8vspc1rhoL8lNxgNmYA" class="align-center" src="https://i.ytimg.com/vi/pqFD6psRDm8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&amp;rs=AOn4CLDPTuWQtBi8vspc1rhoL8lNxgNmYA" style="width: 60%;" />
+</a>
+<div class="admonition attention">
+<p class="admonition-title">注意</p>
+<p>因為閉環與前饋控制的內容比較複雜，有興趣或是鹽巴加太多太閒的人可以看 <a class="reference external" href="ClosedLoop.html">這邊</a></p>
+</div>
+</div></blockquote>
+</section>
+<section id="csa">
+<h3>CSA<a class="headerlink" href="#csa" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>Control System Advisor，可諮詢控制與通訊相關問題。</p>
+</div></blockquote>
+</section>
+</section>
+<section id="d">
+<h2>D<a class="headerlink" href="#d" title="連結到這個標頭">¶</a></h2>
+<section id="ds">
+<h3>DS<a class="headerlink" href="#ds" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>DriverStation的簡稱，如果指軟體的話就是windows上的那個跟機器連接的DriverStation，如果是硬體的話就是場地兩邊，Driver會站的地方</p>
+</div></blockquote>
+</section>
+</section>
+<section id="e">
+<h2>E<a class="headerlink" href="#e" title="連結到這個標頭">¶</a></h2>
+<section id="e-stop-a-stop">
+<h3>E-stop / A-stop<a class="headerlink" href="#e-stop-a-stop" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>在DriverStation上的兩個PLC開關，通常顏色會不一樣，E-stop(Emergency Stop,緊急停機)會把機器整場disable掉, A-stop(Auton Stop,自動停機)會在Auto的時候把機器停掉，但是TeleOp還是能繼續開。</p>
+</div></blockquote>
+</section>
+<section id="elevator-arm-telescope">
+<h3>Elevator / Arm / Telescope<a class="headerlink" href="#elevator-arm-telescope" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>三種常見機構用於運送物件。</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="https://images2.imgbox.com/ec/72/1ZniQXdY_o.png"><img alt="https://images2.imgbox.com/ec/72/1ZniQXdY_o.png" src="https://images2.imgbox.com/ec/72/1ZniQXdY_o.png" style="width: 60%;" />
+</a>
+</figure>
+<p>Elevator範例
+.. website:: <a class="reference external" href="https://www.youtube.com/watch?v=l-rA5-0sE44">https://www.youtube.com/watch?v=l-rA5-0sE44</a></p>
+<p>Arm範例
+.. website:: <a class="reference external" href="https://www.youtube.com/watch?v=Tnl4hQlI1Gc">https://www.youtube.com/watch?v=Tnl4hQlI1Gc</a></p>
+<p>Telescope範例
+.. website:: <a class="reference external" href="https://www.youtube.com/watch?v=kfg6I2UIN_Q">https://www.youtube.com/watch?v=kfg6I2UIN_Q</a></p>
+</div></blockquote>
+</section>
+</section>
+<section id="f">
+<h2>F<a class="headerlink" href="#f" title="連結到這個標頭">¶</a></h2>
+<section id="fms">
+<h3>FMS<a class="headerlink" href="#fms" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>FMS(Field Manangement System, 場地管理系統)是在一個event中控制所有跟場地有關的東西，小到DS上的PLC開關，大到場地中央的直播螢幕都是他在管的，不過最重要的控制項目是在控制機器人在比賽間的通訊，最長常掉的地方也是在那裡。</p>
+</div></blockquote>
+</section>
+<section id="fta">
+<h3>FTA<a class="headerlink" href="#fta" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>FIRST Technical Advisor(FIRST技術顧問)就是當遇到技術問題的時候，可以問的人，通常在比賽場上可以決定有東西爆了(例如RSL)之後還能不能上場</p>
+</div></blockquote>
+</section>
+<section id="fun-robotics-network">
+<h3>FUN Robotics Network<a class="headerlink" href="#fun-robotics-network" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>一個專門在拍機器人(FRC, FTC, FLL, VEX都有)的歪踢頻道</p>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://www.youtube.com/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://www.youtube.com/@FUNRoboticsNetwork" target="_blank">FUN Robotics Network - YouTube</a>
+  </div>
+  <div class="website-url">https://www.youtube.com/@FUNRoboticsNetwork</div>
+</div>
+    </div></blockquote>
+</section>
+<section id="ff-feed-forward">
+<h3>FF / Feed Forward<a class="headerlink" href="#ff-feed-forward" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>請看 <a class="reference external" href="ClosedLoop.html">這邊</a></p>
+</div></blockquote>
+</section>
+</section>
+<section id="i">
+<h2>I<a class="headerlink" href="#i" title="連結到這個標頭">¶</a></h2>
+<section id="imu">
+<h3>IMU<a class="headerlink" href="#imu" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>簡單來說就是集成陀螺儀跟加速度儀的東西，賽場上常見的有 <a class="reference external" href="https://andymark.com/products/navx2-mxp-robotics-navigation-sensor">NavX2</a> 跟 <a class="reference external" href="https://store.ctr-electronics.com/products/pigeon-2?_pos=1&amp;_sid=21854bcdb&amp;_ss=r">Pigeon 2.0</a></p>
+</div></blockquote>
+</section>
+<section id="intake">
+<h3>Intake<a class="headerlink" href="#intake" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>廣義上來說有分under bumper intake跟over bumper intake，請看例子</p>
+<p>under bumper:</p>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://www.youtube.com/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://www.youtube.com/watch?v=bQV_KAZdCJ0" target="_blank">FRC 2024 Under The Bumper Intake Testing #3 [Without vectoring] - YouTube</a>
+  </div>
+  <div class="website-url">https://www.youtube.com/watch?v=bQV_KAZdCJ0</div>
+</div>
+    <p>over bumper:(第一段介紹就好了)</p>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://www.youtube.com/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://www.youtube.com/watch?v=oAOJTfFOP9I&t=709s" target="_blank">254 The Cheesy Poofs | Behind the Bumpers | REEFSCAPE Robot #firstroboticscompetition - YouTube</a>
+  </div>
+  <div class="website-url">https://www.youtube.com/watch?v=oAOJTfFOP9I&t=709s</div>
+</div>
+    </div></blockquote>
+</section>
+</section>
+<section id="k">
+<h2>K<a class="headerlink" href="#k" title="連結到這個標頭">¶</a></h2>
+<section id="kop-am14u-kitbot">
+<h3>KOP / AM14U / KitBot<a class="headerlink" href="#kop-am14u-kitbot" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>Kit of Part是FRC在公布題目的時候的範例機器人，帶有最基礎的得分功能，在kickoff影片的時候看起來最具體的那台八成就是KitBot，也因為顧及價格因素，通常會搭配NEO跟CIM馬達。</p>
+<p>AM14U就是Andymark推出的底盤，採用差速控制的方式來駕駛。</p>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://andymark.com/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://andymark.com/products/am14u6-6-wheel-drop-center-robot-drive-base-2025-frc-kit-of-parts-drive-base" target="_blank">AM14U6 - 6 Wheel Drop Center Robot Drive Base - 2025 FRC Kit of Parts  — AndyMark</a>
+  </div>
+  <div class="website-url">https://andymark.com/products/am14u6-6-wheel-drop-center-robot-drive-base-2025-frc-kit-of-parts-drive-base</div>
+</div>
+    </div></blockquote>
+</section>
+<section id="kickoff-kickoof">
+<h3>Kickoff / Kickoof<a class="headerlink" href="#kickoff-kickoof" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>在每年的一月初或中時，在台灣時間的凌晨坐在電視機(?)前面看FRC那年的題目是什麼(不過根據經驗，要先聽一大段幹話之後才會是題目內容,請見 <a class="reference external" href="https://youtu.be/tRlcAwgMx5Q?si=GOKD-3rTD18c--op">FTC kickoff</a> )</p>
+</div></blockquote>
+</section>
+</section>
+<section id="l">
+<h2>L<a class="headerlink" href="#l" title="連結到這個標頭">¶</a></h2>
+<section id="ll-limelight">
+<h3>LL / Limelight<a class="headerlink" href="#ll-limelight" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>一個AIO(All in one)的視覺辨識裝置，目前出到第四代了，競爭品多是主控板+webcam的配置，例如 <a class="reference external" href="https://rubikpi.ai">Rubik Pi 3</a> 或是 <a class="reference external" href="https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/nano-super-developer-kit/">Jetson Orin Nano</a> 搭配PV</p>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://limelightvision.io/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://limelightvision.io" target="_blank">Limelight Smart Camera</a>
+  </div>
+  <div class="website-url">https://limelightvision.io</div>
+</div>
+    </div></blockquote>
+</section>
+<section id="lqr-model-based-control">
+<h3>LQR / Model Based Control<a class="headerlink" href="#lqr-model-based-control" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>Linear Quadratic Regulator(線性二次調節器)，簡單介紹請看這邊</p>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://www.instagram.com/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://www.instagram.com/p/DQZGLUnkr8N/" target="_blank">Instagram</a>
+  </div>
+  <div class="website-url">https://www.instagram.com/p/DQZGLUnkr8N/</div>
+</div>
+    </div></blockquote>
+</section>
+</section>
+<section id="m">
+<h2>M<a class="headerlink" href="#m" title="連結到這個標頭">¶</a></h2>
+<section id="moi">
+<h3>MOI<a class="headerlink" href="#moi" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>轉動慣量（Moment of Inertia）。</p>
+</div></blockquote>
+</section>
+<section id="mxp">
+<h3>MXP<a class="headerlink" href="#mxp" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>RIO中央的擴充介面，如NavX2會插此處。</p>
+</div></blockquote>
+</section>
+<section id="mecanum">
+<h3>Mecanum<a class="headerlink" href="#mecanum" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>麥克納姆輪是一種特殊的輪子，用他不同的受力方式讓他在KOP的長相不過能達到接近Swerve的效果。在FRC中算是KOP跟swerve中間的銜接底盤。在程式複雜度跟靈活性都介於KOP跟swerve之間。</p>
+<figure class="align-center" id="id9">
+<a class="reference internal image-reference" href="https://i.redd.it/7lqtqo4k31ce1.jpeg"><img alt="https://i.redd.it/7lqtqo4k31ce1.jpeg" src="https://i.redd.it/7lqtqo4k31ce1.jpeg" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">麥克納姆輪本尊</span><a class="headerlink" href="#id9" title="連結到這個圖片">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id10">
+<a class="reference internal image-reference" href="https://www.researchgate.net/publication/367879750/figure/fig1/AS:11431281116841895&#64;1675318925027/Movements-of-a-Mecanum-wheel-driven-robot-to-any-directions-side-arrows-indicate-wheel.png"><img alt="https://www.researchgate.net/publication/367879750/figure/fig1/AS:11431281116841895&#64;1675318925027/Movements-of-a-Mecanum-wheel-driven-robot-to-any-directions-side-arrows-indicate-wheel.png" src="https://www.researchgate.net/publication/367879750/figure/fig1/AS:11431281116841895&#64;1675318925027/Movements-of-a-Mecanum-wheel-driven-robot-to-any-directions-side-arrows-indicate-wheel.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">麥克納姆輪的動力學</span><a class="headerlink" href="#id10" title="連結到這個圖片">¶</a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</section>
+</section>
+<section id="n">
+<h2>N<a class="headerlink" href="#n" title="連結到這個標頭">¶</a></h2>
+<section id="ni">
+<h3>Ni<a class="headerlink" href="#ni" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>National Instruments 做RoboRIO的廠家</p>
+</div></blockquote>
+</section>
+</section>
+<section id="p">
+<h2>P<a class="headerlink" href="#p" title="連結到這個標頭">¶</a></h2>
+<section id="pcm">
+<h3>PCM<a class="headerlink" href="#pcm" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>Pneumatic Control Module，氣控模組。</p>
+</div></blockquote>
+</section>
+<section id="pdh-pdp">
+<h3>PDH / PDP<a class="headerlink" href="#pdh-pdp" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>PDH(Power Distrubtion Hub)跟PDP(Power Distrubtion Panel)都是配電盤，不過一間是REV出的(一間是CTRE出的)。</p>
+<div class="note admonition">
+<p class="admonition-title">補充</p>
+<p>雖然Andymark有自己出一個配電盤，不過目前最好用的是REV的配電盤</p>
+</div>
+</div></blockquote>
+</section>
+<section id="poe">
+<h3>PoE<a class="headerlink" href="#poe" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>Power over Ethernet，用乙太網路供電的方式除了可以少接兩條線外，還可以讓走線更簡潔，簡直超爽(不過FRC用的是被動式的12~24V的PoE)，不過通常有接PoE就不能接12V的紅黑線了，會爆掉。</p>
+<figure class="align-center" id="id11">
+<a class="reference internal image-reference" href="https://megapx-assets.dcard.tw/images/383141ff-d653-404a-81e5-3ab5cc5bc75c/640.jpeg"><img alt="https://megapx-assets.dcard.tw/images/383141ff-d653-404a-81e5-3ab5cc5bc75c/640.jpeg" src="https://megapx-assets.dcard.tw/images/383141ff-d653-404a-81e5-3ab5cc5bc75c/640.jpeg" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">小黑：當你同時接PoE跟旁邊的紅黑線的時候</span><a class="headerlink" href="#id11" title="連結到這個圖片">¶</a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</section>
+<section id="photonvision-pv">
+<h3>PhotonVision / PV<a class="headerlink" href="#photonvision-pv" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>一個由6328開發的開源影像處理軟體，常被FRC的隊伍使用</p>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://photonvision.org/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://photonvision.org" target="_blank">PhotonVision</a>
+  </div>
+  <div class="website-url">https://photonvision.org</div>
+</div>
+    </div></blockquote>
+</section>
+<section id="pathplanner-pp">
+<h3>PathPlanner / PP<a class="headerlink" href="#pathplanner-pp" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>一個路徑規劃軟體，在Auto的部分使用，也因為他支援實時路徑生成，所以也有被用在自動化路徑設計。也因為他易於使用的GUI設計，使他成為常見的Auto路徑規劃的軟體之一</p>
+</div></blockquote>
+</section>
+</section>
+<section id="r">
+<h2>R<a class="headerlink" href="#r" title="連結到這個標頭">¶</a></h2>
+<section id="rev">
+<h3>REV<a class="headerlink" href="#rev" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>就是那個傳說中NEO跟SparkMax的製造商，主打的是親民的價格跟還可以用的性能，常常受rookie隊伍喜歡</p>
+</div></blockquote>
+</section>
+<section id="ri-lri">
+<h3>RI / LRI<a class="headerlink" href="#ri-lri" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>(lead) Robot Inspector機器檢查員就是在比賽開始前檢查機器時檢查機器的人，通常包含重量，毛邊與電檢。</p>
+</div></blockquote>
+</section>
+<section id="rsl">
+<h3>RSL<a class="headerlink" href="#rsl" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>Robot Signal Light(機器訊號燈)是在機器人上一定要有的東西(沒有會被鞭數十，驅之別院)，而且要跟RIO上的RSL信號燈同步</p>
+</div></blockquote>
+</section>
+<section id="ri3d">
+<h3>Ri3D<a class="headerlink" href="#ri3d" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>Robot in 3 days，國外有一群FRC狂人會在題目公布後不眠不休輪班在三天之內把機器設計跟做出來，常常被rookie或是中階隊伍參考當作機器設計idea。</p>
+</div></blockquote>
+</section>
+<section id="rookie">
+<h3>rookie<a class="headerlink" href="#rookie" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>新隊伍</p>
+</div></blockquote>
+</section>
+<section id="robot-reveal">
+<h3>Robot Reveal<a class="headerlink" href="#robot-reveal" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>機器的展示影片，主要是在炫耀自己隊伍設計的機器超屌(並沒有好嗎)。國外的強隊(例如1690, 6328, 118)等都會有，不過時間會比Ri3D晚，通常會在題目公布後2~3週才會有。</p>
+</div></blockquote>
+</section>
+<section id="roborio">
+<h3>RoboRIO<a class="headerlink" href="#roborio" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>機器的車控電腦</p>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://andymark.com/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://andymark.com/products/ni-roborio-2-0" target="_blank">NI roboRIO 2.0 — AndyMark</a>
+  </div>
+  <div class="website-url">https://andymark.com/products/ni-roborio-2-0</div>
+</div>
+    </div></blockquote>
+</section>
+</section>
+<section id="s">
+<h2>S<a class="headerlink" href="#s" title="連結到這個標頭">¶</a></h2>
+<section id="sku">
+<h3>SKU<a class="headerlink" href="#sku" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>Stock keeping unit，庫存單位。在FRC中，只要是廠家有在賣的東西(例如馬達)，九成都會有一個自己的SKU而且不會重複，不了解的可以想像成是番號就好了(咦？)</p>
+</div></blockquote>
+</section>
+<section id="swerve">
+<h3>Swerve<a class="headerlink" href="#swerve" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>中文比較常見的翻譯是向量底盤，向量底盤的最大特徵是一顆輪子會有兩顆馬達來帶，一顆用來開，一顆用來轉向。也是目前FRC性能最強的底盤。(還有爆幹貴也是他的特徵之一)</p>
+<figure class="align-center" id="id12">
+<a class="reference internal image-reference" href="https://docs.wcproducts.com/frc-build-system/~gitbook/image?url=https%3A%2F%2F1911150060-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FByQLBt0bw4wTa9DDV1kH%252Fuploads%252F7UbfXEiTI9ZpmDVhaMlt%252FSwerve%2520XS%2520-%2520Cover.svg%3Falt%3Dmedia%26token%3D991027b6-c7d5-4ed0-b708-6eca771c1def&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=166a89a3&amp;sv=2"><img alt="https://docs.wcproducts.com/frc-build-system/~gitbook/image?url=https%3A%2F%2F1911150060-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FByQLBt0bw4wTa9DDV1kH%252Fuploads%252F7UbfXEiTI9ZpmDVhaMlt%252FSwerve%2520XS%2520-%2520Cover.svg%3Falt%3Dmedia%26token%3D991027b6-c7d5-4ed0-b708-6eca771c1def&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=166a89a3&amp;sv=2" src="https://docs.wcproducts.com/frc-build-system/~gitbook/image?url=https%3A%2F%2F1911150060-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FByQLBt0bw4wTa9DDV1kH%252Fuploads%252F7UbfXEiTI9ZpmDVhaMlt%252FSwerve%2520XS%2520-%2520Cover.svg%3Falt%3Dmedia%26token%3D991027b6-c7d5-4ed0-b708-6eca771c1def&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=166a89a3&amp;sv=2" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">⬆️向量模塊之一(WCP的)</span><a class="headerlink" href="#id12" title="連結到這個圖片">¶</a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</section>
+<section id="sds">
+<h3>SDS<a class="headerlink" href="#sds" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>Swerve Drive Specialties，看名字應該知道是賣什麼的，除了向量模塊以外，還有電梯滑塊也還不錯用</p>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://www.swervedrivespecialties.com/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://www.swervedrivespecialties.com" target="_blank">Swerve Drive Specialties</a>
+  </div>
+  <div class="website-url">https://www.swervedrivespecialties.com</div>
+</div>
+    </div></blockquote>
+</section>
+<section id="systemcore">
+<h3>SystemCore<a class="headerlink" href="#systemcore" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>2027年與之後的RoboRIO的名字，相比於一般的RIO，有支援CAN-FD跟內建IMU還有跟LimeLight合作內建的視覺處理單元就已經可以屌打RoboRIO 2.0了，據說還會比較便宜？</p>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://docs.wpilib.org/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://docs.wpilib.org/en/2027/docs/software/systemcore-info/systemcore-introduction.html" target="_blank">Systemcore Introduction - FIRST Robotics Competition documentation</a>
+  </div>
+  <div class="website-url">https://docs.wpilib.org/en/2027/docs/software/systemcore-info/systemcore-introduction.html</div>
+</div>
+    </div></blockquote>
+</section>
+</section>
+<section id="t">
+<h2>T<a class="headerlink" href="#t" title="連結到這個標頭">¶</a></h2>
+<section id="tba">
+<h3>TBA<a class="headerlink" href="#tba" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>The Blue Alliance, 一個拿來看隊伍的資料跟情蒐還蠻好用ㄉ網站</p>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://www.thebluealliance.com/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://www.thebluealliance.com" target="_blank">The Blue Alliance</a>
+  </div>
+  <div class="website-url">https://www.thebluealliance.com</div>
+</div>
+    </div></blockquote>
+</section>
+<section id="teleop">
+<h3>TeleOp<a class="headerlink" href="#teleop" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>手動模式，在比賽中過完前面15秒的之後的模式，不過有些視覺很強的隊伍也把手動當自動開。</p>
+</div></blockquote>
+</section>
+<section id="thrifty-bot-ttb">
+<h3>Thrifty Bot / TTB<a class="headerlink" href="#thrifty-bot-ttb" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>做電梯連接跟telescope蠻有名的，最近有出相機跟進軍swerve市場。</p>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://www.thethriftybot.com/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://www.thethriftybot.com" target="_blank">FRC Robotics Parts &amp; Solutions | Affordable Off-the-Shelf Components</a>
+  </div>
+  <div class="website-url">https://www.thethriftybot.com</div>
+</div>
+    </div></blockquote>
+</section>
+<section id="vh-109">
+<h3>VH-109 / 小黑<a class="headerlink" href="#vh-109" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>FRC 2025開始用的Radio，相比於OpenMesh的小白，他用6GHz的頻段可以提供更低延遲的傳輸(應該)，而且當FMS爆掉的時候，能用6GHz對連的小黑也比純2.4GHz好。不過出了名的容易過熱當機(大概連續1.5~2小時)</p>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://frc-radio.vivid-hosting.net/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://frc-radio.vivid-hosting.net" target="_blank">VH-109 FRC Radio | FIRST FRC Radio</a>
+  </div>
+  <div class="website-url">https://frc-radio.vivid-hosting.net</div>
+</div>
+    <figure class="align-center" id="id13">
+<a class="reference internal image-reference" href="https://store.ctr-electronics.com/cdn/shop/files/VH-109_WCP-1538_2_2048x2048_bd9e86db-7e66-4029-975c-62b6654f6bfd.webp?v=1729551120&amp;width=1445"><img alt="https://store.ctr-electronics.com/cdn/shop/files/VH-109_WCP-1538_2_2048x2048_bd9e86db-7e66-4029-975c-62b6654f6bfd.webp?v=1729551120&amp;width=1445" src="https://store.ctr-electronics.com/cdn/shop/files/VH-109_WCP-1538_2_2048x2048_bd9e86db-7e66-4029-975c-62b6654f6bfd.webp?v=1729551120&amp;width=1445" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">小黑(2025-)</span><a class="headerlink" href="#id13" title="連結到這個圖片">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id14">
+<a class="reference internal image-reference" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3tSHTfgUmbi8RYq0GYhO_JhWp3rHV5wFobw&amp;s"><img alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3tSHTfgUmbi8RYq0GYhO_JhWp3rHV5wFobw&amp;s" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3tSHTfgUmbi8RYq0GYhO_JhWp3rHV5wFobw&amp;s" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">小白(2016-2024)</span><a class="headerlink" href="#id14" title="連結到這個圖片">¶</a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</section>
+</section>
+<section id="w">
+<h2>W<a class="headerlink" href="#w" title="連結到這個標頭">¶</a></h2>
+<section id="wago">
+<h3>WAGO<a class="headerlink" href="#wago" title="連結到這個標頭">¶</a></h3>
+<p>快速接線方式，比Anderson快但可能脫落。</p>
+</section>
+<section id="wcp">
+<h3>WCP<a class="headerlink" href="#wcp" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>West Coast Product，跟andymark很像，不過他是都有自己賣，而且還有跟CTRE合作推出馬達喔(就是Kraken X60跟x44)。</p>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://wcproducts.com/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://wcproducts.com" target="_blank">WCP
+&ndash; WestCoast Products</a>
+  </div>
+  <div class="website-url">https://wcproducts.com</div>
+</div>
+    </div></blockquote>
+</section>
+<section id="wpilib">
+<h3>WPILib<a class="headerlink" href="#wpilib" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>就是你各位寫程式用的那個圖書館(library)</p>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://docs.wpilib.org/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://docs.wpilib.org" target="_blank">FIRST Robotics Competition Control System &mdash; FIRST Robotics Competition  documentation</a>
+  </div>
+  <div class="website-url">https://docs.wpilib.org</div>
+</div>
+    </div></blockquote>
+</section>
+<section id="vrm">
+<h3>VRM<a class="headerlink" href="#vrm" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>Voltae Regulator Module，電壓穩定模組，主要供應對電壓要求比較高的東西(比如webcam或是有的沒有的sensor)</p>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://hackmd.io/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://hackmd.io/@FRC-7130-4th/BkZF7WFx5" target="_blank">參、Voltage Regulator Module(VRM) - HackMD</a>
+  </div>
+  <div class="website-url">https://hackmd.io/@FRC-7130-4th/BkZF7WFx5</div>
+</div>
+    <figure class="align-center" id="id15">
+<a class="reference internal image-reference" href="https://store.ctr-electronics.com/cdn/shop/files/VRM__22344_1641570374_1280_1280.jpg?v=1723228408&amp;width=416"><img alt="https://store.ctr-electronics.com/cdn/shop/files/VRM__22344_1641570374_1280_1280.jpg?v=1723228408&amp;width=416" src="https://store.ctr-electronics.com/cdn/shop/files/VRM__22344_1641570374_1280_1280.jpg?v=1723228408&amp;width=416" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">VRM本人</span><a class="headerlink" href="#id15" title="連結到這個圖片">¶</a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</section>
+</section>
+<section id="y">
+<h2>Y<a class="headerlink" href="#y" title="連結到這個標頭">¶</a></h2>
+<section id="yass">
+<h3>YASS<a class="headerlink" href="#yass" title="連結到這個標頭">¶</a></h3>
+<blockquote>
+<div><p>Yet Another Software Suite 是由3481, 457, 3561, 9658一起弄的軟體資料庫，有</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>YASGL(Yet Another Swerve Generic library,弄向量底盤的)</p></li>
+<li><p>YAMS(Yet another mechnism system, 弄電梯跟手臂的)</p></li>
+<li><p>YAMG(Yet Another Mechnism Generator,上面的機構的code的生成器，很神奇的是居然沒有串自己家的YAMS)</p></li>
+<li><p>YALL(Yet Another Limelight Library,搞limelight的)</p></li>
+</ul>
+</div></blockquote>
+
+<div class="website-card">
+  <div class="website-header">
+    <img class="website-icon" src="https://yetanothersoftwaresuite.com/favicon.ico" onerror="this.style.display='none'">
+    <a class="website-title" href="https://yetanothersoftwaresuite.com" target="_blank">YASS - Yet Another Software Suite</a>
+  </div>
+  <div class="website-url">https://yetanothersoftwaresuite.com</div>
+</div>
+    </div></blockquote>
+</section>
+</section>
 </section>
 
         </article><button class="back-to-top" type="button">
@@ -132,6 +930,14 @@ data-aria-dark="切換到自動模式">
       <div class="page-info">
         <span>上一頁</span><div class="title">陀螺儀</div></div>
     </a>
+  </div><div class="navigation-next">
+    <a href="DataTransport.html">
+      <div class="page-info">
+        <span>下一頁</span>
+        <div class="title">資料傳輸</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
   </div></div></div>
     </div>
   </main>
@@ -139,7 +945,7 @@ data-aria-dark="切換到自動模式">
 <footer class="sy-foot">
   <div class="sy-foot-inner sy-container mx-auto">
     <div class="sy-foot-reserved md:flex justify-between items-center">
-      <div class="sy-foot-copyright"><p>2025, Justmore5mins</p>
+      <div class="sy-foot-copyright"><p>2025, Justmore5mins from FRC8569</p>
   
   <p>
     Made with

@@ -2,7 +2,7 @@
 <html lang="zh-TW" data-accent-color="violet" data-content_root="../">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>跟馬達有關的東西 - FRC程式資料庫 說明文件</title><link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜尋" href="../search.html" /><link rel="next" title="馬達與控制器簡介" href="MotorIntro.html" /><link rel="prev" title="要裝的東西跟Java的語法" href="../Prefixes/JavaLanguage.html" /><script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>資料傳輸 - FRC程式資料庫 說明文件</title><link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜尋" href="../search.html" /><link rel="next" title="閉環控制" href="ClosedLoop.html" /><link rel="prev" title="專有名詞們" href="SpecificNouns.html" /><script>
     function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
     setColorMode(localStorage._theme||"auto");
   </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=dcd234e3" />
@@ -19,7 +19,7 @@
   --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
 }
 </style>
-    <meta property="og:type" content="website"/><meta property="og:title" content="跟馬達有關的東西"/>
+    <meta property="og:type" content="website"/><meta property="og:title" content="資料傳輸"/>
     <meta name="twitter:card" content="summary"/>
   </head>
 <body><div class="sy-head">
@@ -60,10 +60,19 @@ data-aria-dark="切換到自動模式">
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../Prefixes/index.html">先備知識</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Prefixes/JavaLanguage.html">要裝的東西跟Java的語法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Prefixes/MotorIntro.html">馬達與控制器簡介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Prefixes/ProgrammingStructures.html">FRC的程式架構</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">跟馬達有關的東西</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="MotorIntro.html">馬達與控制器簡介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NotComplexProjects/index.html">基礎專案</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../NotComplexProjects/DIfferentialDrive.html">KOP底盤程式</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">被連結的文件</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="gyroscope.html">陀螺儀</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SpecificNouns.html">專有名詞們</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">資料傳輸</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ClosedLoop.html">閉環控制</a></li>
 </ul>
 </li>
 </ul>
@@ -93,8 +102,12 @@ data-aria-dark="切換到自動模式">
         <span>/</span>
         <meta itemprop="position" content="1" />
       </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <strong itemprop="name">跟馬達有關的東西</strong>
+        <a itemprop="item" href="index.html"><span itemprop="name">被連結的文件</span></a>
+        <span>/</span>
         <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">資料傳輸</strong>
+        <meta itemprop="position" content="3" />
       </li></ol>
     <div class="xl:hidden ml-1">
       <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
@@ -107,14 +120,8 @@ data-aria-dark="切換到自動模式">
       <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
         <article class="yue" role="main">
           <section id="id1">
-<h1>跟馬達有關的東西<a class="headerlink" href="#id1" title="連結到這個標頭">¶</a></h1>
-<p>這邊是所有跟馬達有關的東西</p>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">這是目錄</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="MotorIntro.html">馬達與控制器簡介</a></li>
-</ul>
-</div>
+<h1>資料傳輸<a class="headerlink" href="#id1" title="連結到這個標頭">¶</a></h1>
+<p>早安</p>
 </section>
 
         </article><button class="back-to-top" type="button">
@@ -123,16 +130,16 @@ data-aria-dark="切換到自動模式">
   </svg>
   <span>回到頂部</span>
 </button><div class="navigation flex print:hidden"><div class="navigation-prev">
-    <a href="../Prefixes/JavaLanguage.html">
+    <a href="SpecificNouns.html">
       <i class="i-lucide chevron-left"></i>
       <div class="page-info">
-        <span>上一頁</span><div class="title">要裝的東西跟Java的語法</div></div>
+        <span>上一頁</span><div class="title">專有名詞們</div></div>
     </a>
   </div><div class="navigation-next">
-    <a href="MotorIntro.html">
+    <a href="ClosedLoop.html">
       <div class="page-info">
         <span>下一頁</span>
-        <div class="title">馬達與控制器簡介</div>
+        <div class="title">閉環控制</div>
       </div>
       <i class="i-lucide chevron-right"></i>
     </a>
@@ -143,7 +150,7 @@ data-aria-dark="切換到自動模式">
 <footer class="sy-foot">
   <div class="sy-foot-inner sy-container mx-auto">
     <div class="sy-foot-reserved md:flex justify-between items-center">
-      <div class="sy-foot-copyright"><p>2025, Justmore5mins</p>
+      <div class="sy-foot-copyright"><p>2025, Justmore5mins from FRC8569</p>
   
   <p>
     Made with

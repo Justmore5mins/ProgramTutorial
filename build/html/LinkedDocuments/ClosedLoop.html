@@ -2,7 +2,7 @@
 <html lang="zh-TW" data-accent-color="violet" data-content_root="../">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>陀螺儀 - FRC程式資料庫 說明文件</title><link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜尋" href="../search.html" /><link rel="next" title="專有名詞們" href="SpecificNouns.html" /><link rel="prev" title="被連結的文件" href="index.html" /><script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>閉環控制 - FRC程式資料庫 說明文件</title><link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜尋" href="../search.html" /><link rel="prev" title="資料傳輸" href="DataTransport.html" /><script>
     function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
     setColorMode(localStorage._theme||"auto");
   </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=dcd234e3" />
@@ -19,7 +19,7 @@
   --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
 }
 </style>
-    <meta property="og:type" content="website"/><meta property="og:title" content="陀螺儀"/>
+    <meta property="og:type" content="website"/><meta property="og:title" content="閉環控制"/>
     <meta name="twitter:card" content="summary"/>
   </head>
 <body><div class="sy-head">
@@ -69,10 +69,10 @@ data-aria-dark="切換到自動模式">
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">被連結的文件</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">陀螺儀</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gyroscope.html">陀螺儀</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SpecificNouns.html">專有名詞們</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DataTransport.html">資料傳輸</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ClosedLoop.html">閉環控制</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">閉環控制</a></li>
 </ul>
 </li>
 </ul>
@@ -86,13 +86,7 @@ data-aria-dark="切換到自動模式">
     <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
       <i class="i-lucide close"></i>
     </button>
-    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>該頁內容</h3><ul>
-<li><a class="reference internal" href="#id2">&#25343;&#36039;&#26009;&#30340;&#26041;&#24335;</a><ul>
-<li><a class="reference internal" href="#id3">&#38364;&#26044;&#38464;&#34746;&#20736;&#30340;&#37117;&#24066;&#20659;&#35498;</a></li>
-</ul>
-</li>
-</ul>
-</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
   </aside>
   <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
   <main class="sy-main w-full max-sm:max-w-full print:pt-6">
@@ -112,7 +106,7 @@ data-aria-dark="切換到自動模式">
         <span>/</span>
         <meta itemprop="position" content="2" />
       </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <strong itemprop="name">陀螺儀</strong>
+        <strong itemprop="name">閉環控制</strong>
         <meta itemprop="position" content="3" />
       </li></ol>
     <div class="xl:hidden ml-1">
@@ -126,42 +120,7 @@ data-aria-dark="切換到自動模式">
       <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
         <article class="yue" role="main">
           <section id="id1">
-<h1>陀螺儀<a class="headerlink" href="#id1" title="連結到這個標頭">¶</a></h1>
-<a class="reference internal image-reference" href="https://store.ctr-electronics.com/cdn/shop/files/Pigeon-2.0-9-Degrees-of-Freedom-IMU_robotics_FRC_orientation_data.png?v=1756397345&amp;width=1946"><img alt="https://store.ctr-electronics.com/cdn/shop/files/Pigeon-2.0-9-Degrees-of-Freedom-IMU_robotics_FRC_orientation_data.png?v=1756397345&amp;width=1946" class="align-center" src="https://store.ctr-electronics.com/cdn/shop/files/Pigeon-2.0-9-Degrees-of-Freedom-IMU_robotics_FRC_orientation_data.png?v=1756397345&amp;width=1946" style="width: 80%;" />
-</a>
-<p>這是可愛的陀螺儀</p>
-<hr class="docutils" />
-<p>在FRC中，機器人要取得自己目前的朝向，除了通靈跟用馬達的位置推算以外，最常見跟可信任的方式就是從陀螺儀抓資料過來。常用的陀螺儀有這三種</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Kaukai lab的 NavX</p></li>
-<li><p>CTRE的 Pigeon 2.0</p></li>
-<li><p>類比式的ADIS16448跟ADIS 16470(這兩個如果在賽場上見到的話基本上可以去抽彩卷了(誤))</p></li>
-</ul>
-</div></blockquote>
-<p>也因爲前面兩個比較常見，所以我就著重在這邊。</p>
-<p>陀螺儀讀出來的數據要進到整個資料系統裡面有下面幾種方式</p>
-<ul class="simple">
-<li><p>用RIO右上角的SPI孔</p></li>
-<li><p>用RIO中間的MXP孔</p></li>
-<li><p>直接走CAN迴路</p></li>
-</ul>
-<p>類比式的IMU常見使用的是 <a class="reference external" href="https://makerpro.cc/2016/07/learning-interfaces-about-uart-i2c-spi/">SPI接口</a> ，NavX是用MXP的那一條，然後再從軟體上選要用哪種資料形式。
-Pigeon 2則是把所有讀到的資料都丟到CAN迴路</p>
-<section id="id2">
-<h2>拿資料的方式<a class="headerlink" href="#id2" title="連結到這個標頭">¶</a></h2>
-<p>陀螺儀根據製造廠家不一樣會有不一樣的函式庫(幹話)，不過最常用的函數是 <code class="code docutils literal notranslate"><span class="pre">getRotation2d()</span></code> ，通常回傳值是他的朝向(yaw)，會被喂到位置預估器(Pose Estimator)或是抓出來給人看。</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">AHRS</span><span class="w"> </span><span class="n">gyro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AHRS</span><span class="p">(</span><span class="n">NavXComType</span><span class="p">.</span><span class="na">kMXP_SPI</span><span class="p">);</span>
-</span><span data-line="2"><span class="n">Pigeon2</span><span class="w"> </span><span class="n">gyro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Pigeon2</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-</span><span data-line="3">
-</span><span data-line="4"><span class="n">Rotation2d</span><span class="w"> </span><span class="n">getyaw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gyro</span><span class="p">.</span><span class="na">getRotation2d</span><span class="p">()</span>
-</span></pre></div>
-</div>
-<section id="id3">
-<h3>關於陀螺儀的都市傳說<a class="headerlink" href="#id3" title="連結到這個標頭">¶</a></h3>
-<p>陀螺儀的安裝位置一直是一個都市傳說很大的點之一，通常會裝在底盤的正中間然後面對前面。在安裝位置方面，假設底盤在原地旋轉的時候，幾乎所有的物理量都會一樣。方向也是一樣，因為是讀取相對角度的關係，所以只要是Z軸跟底盤平行就可以了(如果不是的話要透過一波計算拿到x-y平面的yaw值)</p>
-</section>
-</section>
+<h1>閉環控制<a class="headerlink" href="#id1" title="連結到這個標頭">¶</a></h1>
 </section>
 
         </article><button class="back-to-top" type="button">
@@ -170,18 +129,10 @@ Pigeon 2則是把所有讀到的資料都丟到CAN迴路</p>
   </svg>
   <span>回到頂部</span>
 </button><div class="navigation flex print:hidden"><div class="navigation-prev">
-    <a href="index.html">
+    <a href="DataTransport.html">
       <i class="i-lucide chevron-left"></i>
       <div class="page-info">
-        <span>上一頁</span><div class="title">被連結的文件</div></div>
-    </a>
-  </div><div class="navigation-next">
-    <a href="SpecificNouns.html">
-      <div class="page-info">
-        <span>下一頁</span>
-        <div class="title">專有名詞們</div>
-      </div>
-      <i class="i-lucide chevron-right"></i>
+        <span>上一頁</span><div class="title">資料傳輸</div></div>
     </a>
   </div></div></div>
     </div>

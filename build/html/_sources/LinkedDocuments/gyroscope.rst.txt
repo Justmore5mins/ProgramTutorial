@@ -9,12 +9,6 @@
 
 -----
 
-.. note::
-    通常看到陀螺儀後面會多一個IMU，中文叫做慣性測量單元(Inertial Measurement Unit)，詳細內容可以看這邊
-
-    .. website:: https://www.analog.com/cn/lp/002/tech-articles-taiwan/enhancing-robotic-localization.html
-        :title: 運用IMU提升機器人定位性能: 精準導航的基礎技術
-
 在FRC中，機器人要取得自己目前的朝向，除了通靈跟用馬達的位置推算以外，最常見跟可信任的方式就是從陀螺儀抓資料過來。常用的陀螺儀有這三種
 
  -  Kaukai lab的 NavX

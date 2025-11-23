@@ -9,3 +9,5 @@
 
    gyroscope
    SpecificNouns
+   DataTransport
+   ClosedLoop
